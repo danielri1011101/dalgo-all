@@ -1,4 +1,4 @@
-public class Aula1 {
+public class Aula01 {
 
 	//
 	// Determinants
