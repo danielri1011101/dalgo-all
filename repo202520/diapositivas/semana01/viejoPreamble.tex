@@ -1,0 +1,36 @@
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Number sets
+\newcommand{\NN}{\mathbf{N}} % Natural numbers
+\newcommand{\ZZ}{\mathbf{Z}} % Integers
+\newcommand{\Zpos}{\ZZ^{+}} % Positive integers
+\newcommand{\RR}{\mathbf{R}} % Real numbers
+\newcommand{\Rpos}{\RR^{+}} % Positive reals
+
+% Statement environments
+\theoremstyle{definition}
+% % Exercises
+\newtheorem{ejer}{Ejercicio} 
+\newtheorem*{ejer*}{Ejercicio} % No-number
+% % Examples
+\newtheorem{ejem}{Ejemplo}
+\newtheorem*{ejem*}{Ejemplo} % No-number
+% % Definitions
+\newtheorem{defn}{Definición}
+
+% Display of code
+% % Color definitions
+\definecolor{egreen}{RGB}{63,127,95}
+% % Code style
+\lstdefinestyle{hwstyle}{
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bf\color{purple},
+	stringstyle=\color{blue},
+	commentstyle=\color{egreen}, % eclipse comments green
+	numberstyle=\tiny,
+	breaklines=true,
+}
+\lstset{style=hwstyle}
