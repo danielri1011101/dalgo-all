@@ -1,17 +1,16 @@
 \documentclass{amsart}
 \input{preamble}
-\title{Tarea 1 \\ ISIS1105 \S 2}
+\title{ISIS1105 - 202520 \\ Tarea 1 \\ Sección 2}
 \author{Daniel R. Barrero R.}
 
 \begin{document}
 
 \maketitle
 
-
 \section{Analizar código}
 
 Para los siguientes algoritmos, determine su complejidad espacial y temporal en
-notación big-O.
+notación O-grande.
 
 \begin{ejem*}
 	Para el algoritmo de ordenamiento visto en clase.
@@ -49,22 +48,54 @@ notación big-O.
 
 \section*{$7/4$. Calentamiento}
 
-Estos ejercicios no suman puntos de la tarea, son ejercicios fáciles para practicar el lenguaje formal.
+Estos ejercicios no suman puntos de la tarea, son ejercicios fáciles para
+practicar el lenguaje formal.
 
 \begin{ejer*}
 	Demuestre que $O(f) = O(g)$ si y sólo si $f \in O(g)$ y $g \in O(f)$.
 \end{ejer*}
 
-\emph{\textbf{Consejo:} Consulte las
-definiciones al final de este enunciado.}
-
 \section{Complejidad}
+
+\begin{ejer}
+	¿Verdadero o falso? Justifique su respuesta con una demostración o un
+	contraejemplo, según corresponda.
+
+	\begin{enumerate}
+		\item $2^{n+1} \in O(2^n)$
+		\item Para cualquier función $f : \NN \to \Rpos$ si $f \in O(n)$
+			entonces $f^2 \in O(n^2)$.
+		\item Para cualquier función $f : \NN \to \Rpos$ si $f \in O(n)$
+			entonces $2^f \in O(2^n)$.
+	\end{enumerate}
+\end{ejer}
+
+\begin{ejer}
+	Sean $f, g : \NN \to \Rpos$. Demuestre que si $\lim_{n \to \infty} f(n)/g(n) \in \Rpos$ entonces $O(f) = O(g)$.
+\end{ejer}
+
+\begin{ejer}
+	Demuestre que para cualesquiera $a, b > 1$ se cumple que $\log_a n \in O(\log_b n)$.
+\end{ejer}
+
+\begin{ejer}
+	¿Es cierto que $2^{\log_a n} \in O(2^{\log_b n})$ para cualesquiera $a, b > 1$? Justifique su respuesta con una demostración o un contraejemplo, según corresponda.
+\end{ejer}
 
 \newpage
 \thispagestyle{plain}
 
 \section*{Definiciones}
 
-Definitions here.
+Esta es la definición de la notación O-grande (\emph{big-O notation} en inglés).
+
+\begin{defn}
+	Sea $f : \NN \to \Rpos$. Entonces
+
+	$$
+	O(f) = \{\tau : \NN \to \Rpos \ | \ \exists C \in \Rpos, N \in \NN:
+	\ \forall n \geq N: \ \tau(n) \leq C f(n)\}
+	$$
+\end{defn}
 
 \end{document}

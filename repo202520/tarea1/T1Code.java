@@ -29,8 +29,8 @@ public class T1Code {
 	}
 
 	/**
-	 * Computes the trace of a square matrix, which is the sum of its
-	 * diagonal coefficients.
+	 * Computes the trace of a square matrix,
+	 * which is the sum of its diagonal coefficients.
 	 * @param mm the matrix
 	 */
 	int trace(int[][] mm) {

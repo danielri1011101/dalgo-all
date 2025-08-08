@@ -1,6 +1,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{xcolor}
 
 % Number sets
 \newcommand{\NN}{\mathbf{N}} % Natural numbers
@@ -19,3 +20,17 @@
 \newtheorem*{ejem*}{Ejemplo} % No-number
 % % Definitions
 \newtheorem{defn}{Definición}
+
+% Display of code
+% % Color definitions
+\definecolor{egreen}{RGB}{63,127,95}
+% % Code style
+\lstdefinestyle{hwstyle}{
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bf\color{purple},
+	stringstyle=\color{blue},
+	commentstyle=\color{egreen}, % eclipse comments green
+	numberstyle=\tiny,
+	breaklines=true,
+}
+\lstset{style=hwstyle}
