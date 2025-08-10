@@ -1,0 +1,65 @@
+\documentclass{beamer}
+
+\input{preamble}
+
+\title{Diseño y análisis de algoritmos \\ ISIS1105}
+\author{Daniel R. Barrero R.}
+\institute{Universidad de los Andes}
+\date{\today}
+
+\begin{document}
+\frame{\titlepage}
+
+%
+
+\begin{frame}{Algorithmic time complexity - formalities}
+	\begin{defn}
+		Let $\hat{Y}\ \mathtt{alg}(x : \hat{X})$ \{ \ldots \}
+		be an algorithm, where $\hat{X}$ and $\hat{Y}$ are types
+		of a programming language. Also, let
+		\begin{equation*}
+			|\cdot| : \hat{X} \to \NN
+		\end{equation*}
+		be the \emph{size} function of the elements of the input type
+		$\hat{X}$.
+
+		Given $n \in \NN$, we define $\hat{X}_n$ as the elements of
+		$\hat{X}$ of size $n$, namely
+
+		\begin{equation*}
+			\hat{X}_n = \{x \in \hat{X} :\ |x| = n\}
+		\end{equation*}
+	\end{defn}
+\end{frame}
+
+%
+
+\begin{frame}{Algorithmic time complexity - formalities}
+	\begin{defn}
+		Let 
+		\begin{equation*}
+			\hat{\tau}_{\mathtt{alg}}: \hat{X} \to \Rpos
+		\end{equation*}
+		be the \emph{time-cost function} of the algorithm \texttt{alg}. Namely,
+		$\hat{\tau}_\mathtt{alg}(x)$ is the execution time of the algorithm
+		\texttt{alg} for the input $x$.
+
+		We define the \emph{worst-case time complexity function} of the
+		algorithm \texttt{alg} as
+
+		\begin{eqnarray*}
+			\tau_\mathtt{alg} : \NN \to \Rpos \\
+			\text{given by} \\
+			\tau_\mathtt{alg}(n) = \max \ \{\hat{\tau}_\mathtt{alg} (x) :
+			x \in \hat{X}_n\}
+		\end{eqnarray*}
+	\end{defn}
+\end{frame}
+
+%
+
+\begin{frame}{Algorithmic time complexity - formalities}
+	Therefore, when we say something like ``The algorithm \texttt{alg} is $O(n^2)$ ''
+	what we actually mean is that $\tau_\mathtt{alg} \in O(n^2)$.
+\end{frame}
+\end{document}
