@@ -1,0 +1,29 @@
+\documentclass{beamer}
+
+\input{preamble}
+
+\title{Diseño y análisis de algoritmos \\ ISIS1105}
+\author{Daniel R. Barrero R.}
+\institute{Universidad de los Andes}
+
+\begin{document}
+\frame{\titlepage}
+
+%
+
+\begin{frame}{Big-O notation}
+	Let $f : \NN \to \Rpos$. We define
+
+	\begin{equation*}
+		O(f) = \{\tau : \NN \to \Rpos | \exists C \in \Rpos, N \in \NN:
+		\ \forall n \geq N:\ \tau(n) \leq Cf(n)\}
+	\end{equation*}
+
+	\textbf{True or false?}
+	\begin{itemize}
+		\item $10n^2 \in O(n^3)$
+		\item $10n^2 \in O(n^2)$
+		\item $n|\sin(n\pi/2)| \in O(n)$
+	\end{itemize}
+\end{frame}
+\end{document}
