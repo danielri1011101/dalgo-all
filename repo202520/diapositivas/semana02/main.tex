@@ -17,15 +17,126 @@
 	\begin{equation*}
 		O(f) = \{\tau : \NN \to \Rpos | \exists C \in \Rpos, N \in \NN:
 		\ \forall n \geq N:\ \tau(n) \leq Cf(n)\}
-	\end{equation*}
+	\end{equation*}\pause
 
 	\textbf{True or false?}
 	\begin{itemize}
-		\item $10n^2 \in O(n^3)$
+		\item $10n^2 \in O(n^3)$\pause
 		\item $10n^2 \in O(n^2)$
-		\item $n^3 \in O(10n^2)$
-		\item $n|\sin(n\pi/2)| \in O(n)$
+		\item $n^3 \in O(10n^2)$\pause
+		\item $n|\sin(n\pi/2)| \in O(n)$\pause
 		\item $n \in O(n^2|\sin(n\pi/2)|)$
 	\end{itemize}
+\end{frame}
+
+%
+
+\begin{frame}{Recursive algorithms and recurrence relations}
+	Consider the recursive way to compute Fibonacci numbers:
+
+	\lstinputlisting[language=Java, firstline=23, lastline=28]{Aula03.java}
+	\pause
+
+	If we overlook the cost of addition, and let $t(n)$ denote the execution
+	time of algorithm \texttt{fibRec} for input $n \in \NN$, we may assume that
+	$t(n)$ satisfies the recurrence
+
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 1,\ t(1)= 1 \\
+			t(n)= t(n-1) + t(n-2),\ n \geq 2
+		\end{cases}
+	\end{displaymath}
+\end{frame}
+
+%
+
+\begin{frame}{Linear homogeneous recurrence relations}
+	Can we find a \emph{closed formula} for $t(n)$?\pause
+
+	\bigskip
+	Namely, can we solve the recurrence
+
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 1,\ t(1)= 1 \\
+			t(n)= t(n-1) + t(n-2),\ n \geq 2
+		\end{cases}
+	\end{displaymath}
+
+	so that the value $t(n)$ depends only on $n$ and not on previous values
+	of $t$?
+\end{frame}
+
+%
+
+\begin{frame}{Linear homogeneous recurrence relations}
+	Consider the sequence of powers $(a_n)_{n=0}^\infty$ given by $a_n = (-3)^n$.
+	\pause
+
+	\bigskip
+	Namely,
+	\begin{equation*}
+		(a_n)_{n=0}^\infty = 1, -3, 9, -27, \cdots
+	\end{equation*}\pause
+
+	It is a solution of the recurrence
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 1\\
+			t(n)= -3t(n-1),\ n \geq 1
+		\end{cases}
+	\end{displaymath}\pause 
+
+	But not of the recurrence
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 4\\
+			t(n)= -3t(n-1),\ n \geq 1
+		\end{cases}
+	\end{displaymath}
+\end{frame}
+
+%
+
+\begin{frame}{Linear homogeneous recurrence relations}
+	\textbf{Exercise}. Solve the recurrence
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 4\\
+			t(n)= -3t(n-1),\ n \geq 1
+		\end{cases}
+	\end{displaymath}\pause
+
+	Notice that $(-3)^n$ is also a solution of
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 1,\ t(1)= -3\\
+			t(n)= -t(n-1) + 6t(n-2)
+		\end{cases}
+	\end{displaymath}\pause
+
+	But not a solution of
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 1,\ t(1)= 2\\
+			t(n)= -t(n-1) + 6t(n-2)
+		\end{cases}
+	\end{displaymath}
+\end{frame}
+
+%
+
+\begin{frame}{Linear homogeneous recurrence relations}
+	\textbf{Exercise}. Solve the recurrence
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= 1,\ t(1)= 2\\
+			t(n)= -t(n-1) + 6t(n-2)
+		\end{cases}
+	\end{displaymath}\pause
+
+	\textbf{Exercise}. Find the recurrence of which $\sqrt{3}(-3)^n - \sqrt{2}\, 2^n$
+	is the solution.
 \end{frame}
 \end{document}
