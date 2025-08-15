@@ -13,7 +13,7 @@
 
 %
 
-\subsection{} Solve the recurrence
+\subsection{} Solve
 \begin{displaymath}
 	\begin{cases}
 		t(0)= 4\\
@@ -23,7 +23,7 @@
 
 %
 
-\subsection{} Solve the recurrence
+\subsection{} Solve
 \begin{displaymath}
 	\begin{cases}
 		t(0)= 1,\ t(1)= 2\\
@@ -35,7 +35,89 @@
 
 \subsection{} Find the recurrence of which
 \[
-	t(n)= \sqrt{3}(-3)^n + \sqrt{2}2^n
+	t(n)= \sqrt{3}(-3)^n - \sqrt{2}2^n
 \]
 is the unique solution.
+
+%%
+\section{LHRRs - repeated roots}
+\begin{thm}\label{hrep}
+	If the recurrence
+	\[
+		t(n)= \sum_{i= 1}^k a_i t(n-i)
+	\]
+	has characteristic equation
+	\[
+		E(x)(x-c)^d= 0,
+	\]
+	where $d > 1$ and $c$ is not a solution of $E(x)= 0$, then its solutions
+	are of the form
+	\[
+		t(n) = \xi(n) + u_0c^n + u_1nc^n + \cdots u_{d-1}n^{d-1}c^n,
+	\]
+	where the $u_i$ are constants and $\xi(n)$ is a solution of the
+	recurrence with characteristic equation $E(x)= 0$.
+\end{thm}
+
+%
+
+\subsection{} Solve
+\[
+	\begin{cases}
+		t(0)= 0,\ t(1)= -1,\ t(2)= 0,\ t(3)= 1\\
+		t(n)= 2t(n-1) + t(n-2) - 2t(n-3) - t(n-4),\ n \geq 4.
+	\end{cases}
+\]
+
+\textit{[\textbf{Hint}: The characteristic polynomial is divisible by $x^2 - x - 1$.]}
+
+%%
+\section{LRRs - inhomogeneous problems}
+\begin{thm}
+	If the initial value problem
+	\begin{displaymath}
+		\begin{cases}
+			t(0)= v_0, \cdots, t(k-1)= v_{k-1}\\
+			t(n)+ \sum_{i= 1}^k b_it(n-i)= q,\ n \geq k
+		\end{cases}
+	\end{displaymath}
+	is such that $q = c^np(n)$, where $c$ is a positive constant and
+	$p(n)$ is a polynomial of degree $d$, then it is equivalent to a
+	homogeneous problem of degree $k+d+1$ with characteristic equation
+	\begin{equation*}
+		E(x)(x-c)^{d+1} = 0
+	\end{equation*}
+	where $E(x) = 0$ is the characteristic equation of
+	\[
+		t(n) + \sum_{i= 1}^k b_it(n-i)= 0.
+	\]
+\end{thm}
+
+%
+
+\subsection{} Solve
+\[
+	\begin{cases}
+		t(0)= 0\\
+		t(n)= -3t(n-1) + 2^n,\ n\geq 1.
+	\end{cases}
+\]
+
+%
+
+\subsection{} Solve
+\[
+	\begin{cases}
+		t(0)= 0\\
+		t(n)= -3t(n-1) + 2n,\ n\geq 1.
+	\end{cases}
+\]
+
+\subsection{} Solve
+\[
+	\begin{cases}
+		t(0)= 0\\
+		t(n)= -3t(n-1) + (n^2 + 1)2^n,\ n\geq 1.
+	\end{cases}
+\]
 \end{document}
