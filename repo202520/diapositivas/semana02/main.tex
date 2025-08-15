@@ -34,7 +34,7 @@
 \begin{frame}{Recursive algorithms and recurrence relations}
 	Consider the recursive way to compute Fibonacci numbers:
 
-	\lstinputlisting[language=Java, firstline=23, lastline=28]{Aula03.java}\pause
+	\lstinputlisting[language=Java, firstline=23, lastline=28]{Aula03.java}
 
 	If we overlook the cost of addition, and let $t(n)$ denote the execution
 	time of algorithm \texttt{fibRec} for input $n \in \NN$, we may assume that
@@ -74,7 +74,7 @@
 	Namely,
 	\begin{equation*}
 		(a_n)_{n=0}^\infty = 1, -3, 9, -27, \cdots
-	\end{equation*}\pause
+	\end{equation*}
 
 	It is a solution of 
 	\begin{displaymath}
@@ -84,7 +84,7 @@
 	but not of
 	\begin{displaymath}
 		t(n)= 2t(n-1).
-	\end{displaymath}\pause
+	\end{displaymath}
 
 	Notice that $(-3)^n$ is also a solution of
 	\begin{displaymath}
@@ -99,12 +99,12 @@
 		Consider the relation
 		\begin{equation}\label{lhrr}
 			t(n)= a_1t(n-1) + \cdots + a_{k-1}t(n-k+1) + a_kt(n-k).
-		\end{equation}\pause
-		We call it a \emph{linear homogeneous recurrence relation (lhrr)}.\pause
+		\end{equation}
+		We call it a \emph{linear homogeneous recurrence relation (lhrr)}.
 		The \emph{characteristic equation} of \eqref{lhrr} is
 		\begin{equation}\label{cheq}
 			x^k - a_1x^{k-1} - \cdots - a_{k-1}x - a_k = 0,
-		\end{equation}\pause
+		\end{equation}
 		its solutions are called the \emph{roots} of \eqref{lhrr}, and $k$ is
 		the \emph{degree} of \eqref{lhrr}.
 	\end{defn}
@@ -112,7 +112,7 @@
 
 %
 
-\begin{frame}{Quiz}\pause
+\begin{frame}{Quiz}
 		For the Fibonacci relation
 		\begin{equation*}
 			t(n)= t(n-1) + t(n-2)
@@ -207,12 +207,12 @@
 			t(m)= 2t(m-1) + 1,\ m \geq 1.
 		\end{cases}
 	\end{displaymath}
-	and its recurrence relation is \emph{not} homogeneous.\pause
+	and its recurrence relation is \emph{not} homogeneous.
 	\begin{defn}
 		A \emph{linear recurrence relation (lrr)} is of the form
 		\begin{equation}\label{lrr}
 			t(n) + b_1t(n-1) + \cdots + b_{k-1}t(n-k+1) + b_kt(n-k)= q.
-		\end{equation}\pause
+		\end{equation}
 		When $q \neq 0$, it is called the \emph{inhomogeneous part} of \eqref{lrr}.
 	\end{defn}
 \end{frame}
@@ -221,14 +221,14 @@
 
 \begin{frame}{LRRs - The towers of Hanoi}
 	If $t(n) - 2t(n-1) = 1$ for all $n \geq 1$, then $t(n-1) - 2t(n-2) = 1$ for
-	all $n \geq 2$.\pause Therefore, the Hanoi problem can be reformulated as
+	all $n \geq 2$. Therefore, the Hanoi problem can be reformulated as
 
 	\begin{displaymath}
 		\begin{cases}
 			t(0)= 0,\ t(1)= 1\\
 			t(n)= 3t(n-1) - 2t(n-2),\ n \geq 2.
 		\end{cases}
-	\end{displaymath}\pause
+	\end{displaymath}
 	Thanks to theorem \ref{thmhr}, its solution is of the form
 	\begin{equation*}
 		t(n) = c_02^n + c_11^n,
@@ -248,7 +248,7 @@
 \begin{frame}{LRRs - reduction to homogeneous case}
 	We solved the inhomogeneous Hanoi problem by making it a particular case
 	of a higher-degree homogeneous problem. This applies in general for the
-	following family of problems.\pause
+	following family of problems.
 	\begin{thm}[2]
 		If the initial value problem
 		\begin{displaymath}(4)
