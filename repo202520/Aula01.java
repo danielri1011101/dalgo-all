@@ -154,7 +154,7 @@ public class Aula01 {
 	//
 	
 	/**
-	 * Recursive sorting algorithm.
+	 * Recursive sorting algorithm, first divide-and-conquer example.
 	 * @param aa
 	 * @return a new array with the elements of aa from smallest to largest.
 	 */
