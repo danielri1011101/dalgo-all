@@ -3,12 +3,21 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 % Notation
 %% Number sets
 \newcommand{\NN}{\mathbf{N}} % Natural numbers
 \newcommand{\RR}{\mathbf{R}} % Real numbers
 \newcommand{\Rpos}{\RR^+} % Positive reals
+
+% Formal statements
+%% Theorem format
+\newtheorem{thm}{Theorem}
+%% Definition format
+\theoremstyle{definition}
+\newtheorem{defn}{Definition} % Definitions
+\newtheorem{quiz}{Quiz} % Quizzes
 
 % Display of code
 %% Color definitions
@@ -20,6 +29,7 @@
 	stringstyle=\color{blue},
 	commentstyle=\color{egreen},
 	showstringspaces=false,
+%	numbers=left,
 	numberstyle=\tiny,
 	breaklines=true,
 }
