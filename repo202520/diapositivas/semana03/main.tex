@@ -57,13 +57,14 @@
 			t(m)= 2t(m-1) + 1,\ m \geq 1.
 		\end{cases}
 	\end{displaymath}
-	and its recurrence relation is \emph{not} homogeneous.
+	and its recurrence relation is not homogeneous.
 	\begin{defn}
 		A \emph{linear recurrence relation (lrr)} is of the form
 		\begin{equation}\label{lrr}
 			t(n) + b_1t(n-1) + \cdots + b_{k-1}t(n-k+1) + b_kt(n-k)= q.
 		\end{equation}
-		When $q \neq 0$, it is called the \emph{inhomogeneous part} of \eqref{lrr}.
+		When $q \neq 0$, it is called the \emph{inhomogeneous part} of
+		\eqref{lrr}.
 		The \emph{characteristic equation} of \eqref{lrr} is the characteristic
 		equation of $t(n) + \sum_{i= 1}^k b_it(n-i)= 0$, which is the
 		\emph{homogeneous part} of \eqref{lrr}.
@@ -147,6 +148,7 @@
 		\end{cases}
 	\end{displaymath}
 	where $cn$ is the time complexity of the \texttt{merge} subroutine.
+	
 	If $n$ is even, the recurrence becomes
 	\[
 		t(n)= 2t(n/2) + cn.
@@ -194,7 +196,6 @@
 	\]
 	We obtain $T(m) = 2^m + cm2^m$. Since $m = \log n$, we conclude
 	$t(n) = n + cn\log n$, which is in $O(n\log n)$.
-
 	\begin{qtn}
 		How can one conclude $t(n) \in O(n\log n)$ for all $n$ and not
 		just for powers of two?
@@ -206,8 +207,8 @@
 \begin{frame}{D \& C - fast exponentiation}
 	Consider the following algorithm
 	
-	\lstinputlisting[language=Java, firstline=89, lastline=98]{Aula04.java}
-
+	\lstinputlisting[language=Java, firstline=89, lastline=99]{Aula04.java}
+	
 	Let $t(n)$ denote the number of multiplications \texttt{'*'}. It defines the
 	initial value problem
 	\[
@@ -215,6 +216,100 @@
 			t(0)= 0\\
 			t(n)= t(n/2) + 1,\ n > 0\ \text{even}\\
 			t(n)= t(n-1) + 1,\ n > 0\ \text{odd}.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	To compute its time complexity, notice that
+	\[
+		\lfloor n/2 \rfloor =
+		\begin{cases}
+			n/2,\ n \text{ even}\\
+			(n-1)/2,\ n \text{ odd}.
+		\end{cases}
+	\]
+	Therefore, if $n$ is odd
+	\[
+		\begin{array}{c}
+			t(n) = \left( t\left( \frac{n-1}{2} \right) + 1 \right) + 1\\
+			= t(\lfloor n/2 \rfloor) + 2.
+		\end{array}
+	\]
+	Then $t(n) \in O(\tau(n))$ where
+	\[
+		\begin{cases}
+			\tau(0)= 0\\
+			\tau(n)= \tau(\lfloor n/2 \rfloor) + 2,\ n > 0.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	We apply the change of variable $n= 2^m$ and let $T(m)= \tau(2^m)$. We
+	obtain the i.v.p.
+	\[
+		\begin{cases}
+			T(0)= 2\\
+			T(m)= T(m-1) + 2,\ m > 0.
+		\end{cases}
+	\]
+	We apply the homogenization trick. If $m > 1$ then
+	\[
+		\begin{array}{c}
+			T(m) - T(m-1) = 2\\
+			T(m-1) - T(m-2) = 2.
+		\end{array}
+	\]
+	Then a closed formula for $T(m)$ is obtained by solving the homogeneous i.v.p.
+	\[
+		\begin{cases}
+			T(0)= 2,\ T(1) = 4\\
+			T(m) - 2T(m-1) + T(m-2)= 0,\ m > 1.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	The characteristic equation is $(x - 1)^2= 0$, so the solution is
+	\[
+		T(m) = u1^m + vm1^m
+	\]
+	where the constants $u$ and $v$ are such that
+	\[
+		\begin{cases}
+			u = 2\\
+			u + v = 4.
+		\end{cases}
+	\]
+	This gives $T(m) = 2 + 2m$. Since $m = \log n$, we obtain
+	\[
+		\tau(n) = 2 + 2\log n
+	\]
+	and we conclude $t(n) \in O(\log n)$.
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - master theorem}
+	Let $t(n)$ be such that
+	\[
+		t(n) \leq at(n/b) + cn^k
+	\]
+	for $c \in \Rpos$, $a \in \Zpos$, $b \in \Zpos$, $k \in \NN$ and $n$ a
+	large enough power of $b$. Then
+	\[
+		t(n) \in
+		\begin{cases}
+			O(n^k)\ \ \text{if}\ a < b^k\\
+			O(n^k\log n)\ \ \text{if}\ a = b^k\\
+			O(n^{\log_b a})\ \ \text{if}\ a > b^k.
 		\end{cases}
 	\]
 \end{frame}

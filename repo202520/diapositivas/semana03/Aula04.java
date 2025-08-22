@@ -5,7 +5,7 @@ public class Aula04 {
 	 * @assert s /= t AND {s,t} \subset {1,2,3}
 	 * @return The sequence of moves as a string.
 	 */
-	public static String hanoi(int m, int s, int t) {
+	String hanoi(int m, int s, int t) {
 		if (m < 1) {
 			return "";
 		}
@@ -25,7 +25,7 @@ public class Aula04 {
 	 * @param aa
 	 * @return a new array with the elements of aa from smallest to largest.
 	 */
-	public static int[] mergeSort(int[] aa) {
+	int[] mergeSort(int[] aa) {
 		int n = aa.length;
 		if (n == 1) {
 			return aa;
@@ -51,7 +51,7 @@ public class Aula04 {
 	 * Merge two sorted arrays.
 	 * Helper function for mergeSort().
 	 */
-	public static int[] merge(int[] aa, int[] bb) {
+	int[] merge(int[] aa, int[] bb) {
 		int n = aa.length;
 		int m = bb.length;
 		int[] ans = new int[n+m];
@@ -86,23 +86,25 @@ public class Aula04 {
 		return ans;
 	}
 
-	public static int fastExp(int a, int n) {
+	int fastExp(int a, int n) {
 		if (n < 1) {
 			return 1;
 		}
 		if (n%2 == 0) {
 			int nh= n/2;
-			return fastExp(a, nh)*fastExp(a, nh);
+			int b= fastExp(a, nh);
+			return b*b;
 		}
 		return a*fastExp(a, n-1);
 	}
 
 	public static void main(String[] args) {
-		System.out.println(hanoi(4,1,2));
+		Aula04 au= new Aula04();
+		System.out.println(au.hanoi(4,1,2));
 		int a= 3;
 		int n= 11;
 		for (int i= 0; i <= n; i++) {
-			System.out.println(fastExp(a,i));
+			System.out.println(au.fastExp(a,i));
 		}
 	}
 }
