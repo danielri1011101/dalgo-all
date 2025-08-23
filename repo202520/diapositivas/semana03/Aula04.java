@@ -1,7 +1,7 @@
 public class Aula04 {
 	/**
 	 * Computes the sequence of moves required to solve the Hanoi puzzle with
-	 * three pegs, m rings, source peg s, and target peg t.
+	 * three pegs, m disks, source peg s, and target peg t.
 	 * @assert s /= t AND {s,t} \subset {1,2,3}
 	 * @return The sequence of moves as a string.
 	 */
@@ -11,7 +11,7 @@ public class Aula04 {
 		}
 		String seq= "";
 		seq+= hanoi(m-1, s, 6-s-t);
-		seq+= "ring " + m + ": " + s + "->" + t + "; ";
+		seq+= "disk " + m + ": " + s + "->" + t + "; ";
 		seq+= hanoi(m-1, 6-s-t, t);
 		return seq;
 	}
