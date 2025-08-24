@@ -151,4 +151,65 @@
 		\end{cases}
 	\]
 \end{frame}
+
+%
+
+\begin{frame}{D \& C - Proof of master theorem}
+	The essential step in the proof of the master theorem is equivalent to
+	computing the time complexity of the following recurrence. Let $a \in \Zpos,
+	b \in \ZZ^{\geq 2},\ c \in \Rpos$.
+	\[
+		\begin{cases}\label{mtr} % Master theorem recurrence
+			t(1)= v_0\\
+			t(n)= at(\lceil n/b \rceil) + cn^k,\ n > 1.
+		\end{cases}
+	\]
+	After the change of variable $T(m)= t(b^m)$, it becomes the linear initial
+	value problem
+	\[
+		\begin{cases}\label{mtl} % Master theorem linear
+			T(0)= v_0\\
+			T(m)= aT(m-1) + c(b^k)^m,\ m > 0.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - Proof of master theorem}
+	To apply the homogenization trick, we see that for $m > 1$ we have 
+	\[
+		\begin{cases}
+			T(m) - aT(m-1) = c(b^k)^m\\
+			b^kT(m-1) - ab^kT(m-2) = c(b^k)^m
+		\end{cases}
+	\]
+	Subtracting these equations and computing $T(1)$, we obtain the homogeneous
+	initial value problem
+	\[
+		\begin{cases}
+			T(0)= v_0,\ T(1)= av_0 + cb^k\\
+			T(m) - (a + b^k)T(m-1) + ab^kT(m-2)= 0,\ m > 1.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - Proof of master theorem}
+	Its characteristic equation is $(x - a)(x - b^k)= 0$, so that the solution
+	is of the form
+	\[
+		T(m) = ua^m + v(b^k)^m
+	\]
+	for some constants $u$ and $v$, unless $a = b^k$, in which case
+	\[
+		T(m) = u(b^k)^m + vm(b^k)^m.
+	\]
+	The result then follows from noticing that $a^m = n^{\log_b a}$ and
+	$(b^k)^m = n^k$, and by considering the possible values of the limit
+	\[
+		\lim_{m \to \infty} \frac{a^m}{(b^k)^m}.
+	\]
+\end{frame}
 \end{document}
