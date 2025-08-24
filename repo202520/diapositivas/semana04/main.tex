@@ -1,0 +1,154 @@
+\documentclass{beamer}
+
+\input{preamble}
+
+\title{Diseño y análisis de algoritmos \\ ISIS1105}
+\author{Daniel R. Barrero R.}
+\institute{Universidad de los Andes}
+
+\begin{document}
+\frame{\titlepage}
+
+%
+
+\begin{frame}{LRRs - Homogenization trick}
+	\begin{thm}[2]\label{ht}
+		If the initial value problem
+		\begin{displaymath}(4)
+			\begin{cases}
+				t(0)= v_0, \cdots, t(k-1)= v_{k-1}\\
+				t(n) + \sum_{i= 1}^k b_it(n-i)= q,\ n \geq k
+			\end{cases}
+		\end{displaymath}
+		is such that $q = c^np(n)$, where $c$ is a positive constant and
+		$p(n)$ is a polynomial of degree $d$, then it is equivalent to a
+		homogeneous problem of degree $k+d+1$ with characteristic equation
+		\begin{equation*}
+			E(x)(x-c)^{d+1} = 0
+		\end{equation*}
+		where $E(x) = 0$ is the characteristic equation of the recurrence
+		in (4).
+	\end{thm}
+\end{frame}
+
+%% Divide and conquer
+\begin{frame}{Divide and conquer}
+	\centering
+	\includegraphics[width=0.3\textwidth]{strategist.png}
+	
+	\bigskip
+	``\emph{Unity is strength. Divide your enemy, and conquer them.}''
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	Consider the following algorithm
+	
+	\lstinputlisting[language=Java, firstline=8, lastline=18]{Aula05.java}
+	
+	Let $t(n)$ denote the number of multiplications \texttt{'*'}. It defines the
+	initial value problem
+	\[
+		\begin{cases}
+			t(0)= 0\\
+			t(n)= t(n/2) + 1,\ n > 0\ \text{even}\\
+			t(n)= t(n-1) + 1,\ n > 0\ \text{odd}.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	To compute its time complexity, notice that
+	\[
+		\lfloor n/2 \rfloor =
+		\begin{cases}
+			n/2,\ n \text{ even}\\
+			(n-1)/2,\ n \text{ odd}.
+		\end{cases}
+	\]
+	Therefore, if $n$ is odd
+	\[
+		\begin{array}{c}
+			t(n) = \left( t\left( \frac{n-1}{2} \right) + 1 \right) + 1\\
+			= t(\lfloor n/2 \rfloor) + 2.
+		\end{array}
+	\]
+	Then $t(n) \in O(\tau(n))$ where
+	\[
+		\begin{cases}
+			\tau(0)= 0\\
+			\tau(n)= \tau(\lfloor n/2 \rfloor) + 2,\ n > 0.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	We apply the change of variable $n= 2^m$ and let $T(m)= \tau(2^m)$. We
+	obtain the i.v.p.
+	\[
+		\begin{cases}
+			T(0)= 2\\
+			T(m)= T(m-1) + 2,\ m > 0.
+		\end{cases}
+	\]
+	We apply the homogenization trick. If $m > 1$ then
+	\[
+		\begin{array}{c}
+			T(m) - T(m-1) = 2\\
+			T(m-1) - T(m-2) = 2.
+		\end{array}
+	\]
+	Then a closed formula for $T(m)$ is obtained by solving the homogeneous i.v.p.
+	\[
+		\begin{cases}
+			T(0)= 2,\ T(1) = 4\\
+			T(m) - 2T(m-1) + T(m-2)= 0,\ m > 1.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - fast exponentiation}
+	The characteristic equation is $(x - 1)^2= 0$, so the solution is
+	\[
+		T(m) = u1^m + vm1^m
+	\]
+	where the constants $u$ and $v$ are such that
+	\[
+		\begin{cases}
+			u = 2\\
+			u + v = 4.
+		\end{cases}
+	\]
+	This gives $T(m) = 2 + 2m$. Since $m = \log n$, we obtain
+	\[
+		\tau(n) = 2 + 2\log n
+	\]
+	and we conclude $t(n) \in O(\log n)$.
+\end{frame}
+
+%
+
+\begin{frame}{D \& C - master theorem}
+	Let $t(n)$ be such that
+	\[
+		t(n) \leq at(n/b) + cn^k
+	\]
+	for $c \in \Rpos$, $a \in \Zpos$, $b \in \Zpos$, $k \in \NN$ and $n$ a
+	large enough power of $b$. Then
+	\[
+		t(n) \in
+		\begin{cases}
+			O(n^k)\ \ \text{if}\ a < b^k\\
+			O(n^k\log n)\ \ \text{if}\ a = b^k\\
+			O(n^{\log_b a})\ \ \text{if}\ a > b^k.
+		\end{cases}
+	\]
+\end{frame}
+\end{document}
