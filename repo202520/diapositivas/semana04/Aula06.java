@@ -1,4 +1,22 @@
 public class Aula06 {
+
+	/**
+	 * Fast exponentiation.
+	 * @param n is non-negative
+	 * @return a to the power n.
+	 */
+	int fastExp(int a, int n) {
+		if (n < 1) {
+			return 1;
+		}
+		if (n%2 == 0) {
+			int nh= n/2;
+			int b= fastExp(a, nh);
+			return b*b;
+		}
+		return a*fastExp(a, n-1);
+	}
+
 	/**
 	 * Computes the nuber of subsets of size k in a set of size n,
 	 * by summing the rows of Pascal's triangle.
