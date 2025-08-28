@@ -217,4 +217,164 @@
 		\lim_{m \to \infty} \frac{a^m}{(b^k)^m}.
 	\]
 \end{frame}
+
+%% Dynamic programming
+\begin{frame}{Dynamic programming (DP)}
+	\centering
+	\includegraphics[width=0.4\textwidth]{tyler.png}
+
+	``\emph{Sometimes sub-problems overlap, believe me. In that case, we keep
+		track of the smaller solutions in a table. That's what we call
+		dynamic programming.}''
+\end{frame}
+
+%
+
+% Binomial coefficients
+\begin{frame}{DP - Binomial coefficients}
+	\centering
+	\includegraphics[width=0.6\textwidth]{sele2014.png}
+	\hspace{0.5cm}
+	$\longleftarrow$
+	\hspace{0.5cm}
+	\includegraphics[width=0.15\textwidth]{lucho.png}
+\end{frame}
+
+%
+
+% No teams
+\begin{frame}{DP - Binomial coefficients}
+	\centering
+	\begin{tikzpicture}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+	\end{tikzpicture}
+	\hspace{1cm}
+	\begin{tikzpicture}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+	\end{tikzpicture}
+
+	\[
+		\binom{17}{11} = \binom{16}{11} + \binom{16}{10}
+	\]
+\end{frame}
+
+%
+
+% Without new
+\begin{frame}{DP - Binomial coefficients}
+	\centering
+	\begin{tikzpicture}
+		\colorlet{syellow}{yellow!60!orange}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+	\end{tikzpicture}
+	\hspace{1cm}
+	\begin{tikzpicture}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+	\end{tikzpicture}
+
+	\[
+		\binom{17}{11} = \binom{16}{11} + \binom{16}{10}
+	\]
+\end{frame}
+
+%
+
+% With new
+\begin{frame}{DP - Binomial coefficients}
+	\centering
+	\begin{tikzpicture}
+		\colorlet{syellow}{yellow!60!orange}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+	\end{tikzpicture}
+	\hspace{1cm}
+	\begin{tikzpicture}
+		\colorlet{syellow}{yellow!60!orange}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+	\end{tikzpicture}
+
+	\[
+		\binom{17}{11} = \binom{16}{11} + \binom{16}{10}
+	\]
+\end{frame}
+
+%
+
+% bbc - statement
+\begin{frame}{DP - Binomial coefficients}
+	\begin{thm}[Pascal's identity]\label{pascid}
+		Let $n, k \in \NN$ be such that $0 < k < n$. Then
+		\[
+			\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}.
+		\]
+	\end{thm}
+
+	We could use this recursive definition to implement the following naive
+	algorithm for computing binomial coefficients:
+	\lstinputlisting[language=Java, firstline=24, lastline=32]{Aula07.java}
+\end{frame}
+
+%
+
+% bbc - complexity
+\begin{frame}{DP - Binomial coefficients}
+	How bad is this naive algorithm?
+\end{frame}
+
+% World series
+\begin{frame}{DP - Mario Kart world cup finals}
+	\centering
+	\includegraphics[width=0.3\textwidth]{feid.png}
+	\includegraphics[width=0.3\textwidth]{luigi.png}
+
+	VS.
+
+	\medskip
+	\includegraphics[width=0.3\textwidth]{karolg.png}
+	\includegraphics[width=0.3\textwidth]{peach.png}
+\end{frame}
 \end{document}

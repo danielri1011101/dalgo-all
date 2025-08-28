@@ -1,4 +1,5 @@
 public class Aula07 {
+
 	/**
 	 * Computes the nuber of subsets of size k in a set of size n,
 	 * by summing the rows of Pascal's triangle.
@@ -13,11 +14,21 @@ public class Aula07 {
 			int[] temp= new int[k+1];
 			temp[0]= 1;
 			for (int j= 1; j <= k; j++) {
-				temp[j]= memo[j-1] + memo[j];
+				temp[j]= memo[j] + memo[j-1];
 			}
 			memo= temp;
 		}
 		return memo[k];
+	}
+
+	int badBc(int n, int k) {
+		if (n < k) {
+			return 0;
+		}
+		if (k == 0 || k == n) {
+			return 1;
+		}
+		return badBc(n-1, k) + badBc(n-1,k-1);
 	}
 	
 	/**
@@ -46,11 +57,20 @@ public class Aula07 {
 		}
 		return memo[n][n];
 	}
+
+	float badMarioKart(float p, int i, int j) {
+		if (j == 0 ) {
+			return 0;
+		}
+		if (i == 0) {
+			return 1;
+		}
+		float q= 1-p;
+		return p*badMarioKart(p,i-1,j) + q*badMarioKart(p,i,j-1);
+	}
 	
 	public static void main(String[] args) {
 		Aula07 au= new Aula07();
-		float p= (float) 0.52;
-		System.out.println(au.marioKart(p,10));
 		System.out.println("Hola dalgo!");
 	}
 }
