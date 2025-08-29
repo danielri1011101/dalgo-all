@@ -265,11 +265,13 @@
 	\end{tikzpicture}
 	\hspace{1cm}
 	\begin{tikzpicture}
-		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue,
+			label=above:LD] {};
 	\end{tikzpicture}
 
+	\medskip
 	\[
-		\binom{17}{11} = \binom{16}{11} + \binom{16}{10}
+		\ 
 	\]
 \end{frame}
 
@@ -299,7 +301,8 @@
 	\end{tikzpicture}
 	\hspace{1cm}
 	\begin{tikzpicture}
-		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue,
+			label=above:LD] {};
 	\end{tikzpicture}
 
 	\[
@@ -334,7 +337,8 @@
 	\hspace{1cm}
 	\begin{tikzpicture}
 		\colorlet{syellow}{yellow!60!orange}
-		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=syellow,
+			label=above:LD] {};
 	\end{tikzpicture}
 
 	\[
@@ -353,8 +357,7 @@
 		\]
 	\end{thm}
 
-	We could use this recursive definition to implement the following naive
-	algorithm for computing binomial coefficients:
+	We could then implement the following naive algorithm:
 	\lstinputlisting[language=Java, firstline=24, lastline=32]{Aula07.java}
 \end{frame}
 
@@ -362,7 +365,58 @@
 
 % bbc - complexity
 \begin{frame}{DP - Binomial coefficients}
-	How bad is this naive algorithm?
+	But how bad is it?
+	\begin{defn}[Omega notation]
+		Let $f : \NN \to \Rpos$. We define
+		\[
+			\Omega(f)= \{\tau : \NN \to \Rpos | f \in O(\tau)\}.
+		\]
+	\end{defn}
+	Informally, we could say that $\Omega(f)$ consists of the functions
+	``Worse than $f$''.
+
+	\bigskip
+	To analyse the complexity of \texttt{badBc}, let us count the number of
+	additions given by the operator \texttt{'+'}.
+\end{frame}
+
+%
+
+\begin{frame}{DP - Binomial coefficients}
+	Let $S(n,k)$ be the number of additions \texttt{'+'} required to compute
+	\texttt{badBc(n,k)}. Then
+	\[
+		\begin{cases}
+			S(n,k) = 0,\ k = 0 \lor k = n\\
+			S(n,k) = S(n-1,k) + S(n-1,k-1),\ 0 < k < n.
+		\end{cases}
+	\]
+	It follows from a routine proof by induction that
+	\begin{prop}
+		\[
+			S(n,k) = \binom{n}{k} - 1.
+		\]
+	\end{prop}
+\end{frame}
+
+%
+
+\begin{frame}{DP - Binomial coefficients}
+	We know that a set with $k$ elements has $2^k$ subsets. Also, a counting
+	argument gives
+	\[
+		\binom{n}{k} = \sum_{j= 0}^k \binom{k}{j} \binom{n-k}{k-j}.
+	\]
+	Since $\binom{n-k}{k-j} \geq 1$, we obtain
+	\[
+		\binom{n}{k} - 1 \geq 2^k - 1.
+	\]
+	Thus, we may say that the complexity of \texttt{badBc} given by $S(n,k)$ is
+	\emph{worse than exponential}. For instance, if we take $k= \lfloor n/2
+	\rfloor$ then 
+	\[
+		t_{\texttt{badBc}} \in \Omega(\sqrt{2}^n).
+	\]
 \end{frame}
 
 % World series
