@@ -1,0 +1,124 @@
+\documentclass{amsart}
+
+\input{preamble}
+
+\title{ISIS1105 \\ Quiz 3}
+\author{Daniel R. Barrero R.}
+
+\begin{document}
+\maketitle
+
+\section{} ¿Cuáles de las siguientes funciones pertenecen a $O(n)$? Seleccione
+todas las que apliquen.
+\begin{tabbing}
+	(I). $n + \log n$ \= (II). $n\sqrt{n}$\\
+	(III). $\log n$   \> (IV). $n + \sqrt{n}$
+\end{tabbing}
+\begin{enumerate}
+	\item[(a)] I, II y IV
+	\item[(b)] I, III y IV
+	\item[(c)] III
+	\item[(d)] Todas pertenecen.
+\end{enumerate}
+
+%
+
+\section{} Considere la recurrencia lineal no-homogénea
+\[
+	\begin{cases}
+		t(0)= 1\\
+		t(n)= 3t(n-1) + 2^n,\ n > 0.
+	\end{cases}
+\]
+¿Cuál es el problema de valor inicial homogéneo que resulta de aplicarle el
+\emph{homogenization trick}?
+\begin{enumerate}
+	\item[(a)]
+		\[
+			\begin{cases}
+				t(0)= 1,\ t(1)= 2\\
+				t(n)= -5t(n-1) + 6t(n-2),\ n > 1
+			\end{cases}
+		\]
+	\item[(b)]
+		\[
+			\begin{cases}
+				t(0)= 1,\ t(1)= 5\\
+				t(n)= 5t(n-1) + 6t(n-2),\ n > 1
+			\end{cases}
+		\]
+	\item[(c)]
+		\[
+			\begin{cases}
+				t(0)= 1,\ t(1)= 5\\
+				t(n)= 5t(n-1) - 6t(n-2),\ n > 1
+			\end{cases}
+		\]
+	\item[(d)]
+		\[
+			\begin{cases}
+				t(0)= 1,\ t(1)= 2\\
+				t(n)= 5t(n-1) - 6t(n-2),\ n > 1
+			\end{cases}
+		\]
+\end{enumerate}
+
+%
+
+\section{} Considere la recurrencia lineal no-homogénea
+\[
+	\begin{cases}
+		t(0)= 0\\
+		t(n)= t(n-1) + n,\ n > 0.
+	\end{cases}
+\]
+¿Cuál es el problema de valor inicial homogéneo que resulta de aplicarle el
+\emph{homogenization trick}?
+\begin{enumerate}
+	\item[(a)]
+		\[
+			\begin{cases}
+				t(0)= 0,\ t(1)= 1,\ t(2)= 2\\
+				t(n)= 3t(n-1) - 3t(n-2) + t(n-3),\ n > 2
+			\end{cases}
+		\]
+	\item[(b)]
+		\[
+			\begin{cases}
+				t(0)= 0,\ t(1)= 1,\ t(2)= 3\\
+				t(n)= 3t(n-1) - 3t(n-2),\ n > 2
+			\end{cases}
+		\]
+	\item[(c)]
+		\[
+			\begin{cases}
+				t(0)= 0,\ t(1)= 1,\ t(2)= 3\\
+				t(n)= 3t(n-1) - 3t(n-2) + t(n-3),\ n > 2
+			\end{cases}
+		\]
+	\item[(d)]
+		\[
+			\begin{cases}
+				t(0)= 0,\ t(1)= 1,\ t(2)= 3\\
+				t(n)= t(n-1) - t(n-2) + t(n-3),\ n > 2
+			\end{cases}
+		\]
+\end{enumerate}
+
+%
+
+\section{} Considere la recurrencia lineal no-homogénea donde $c$ y
+$c'$ son constantes.
+\[
+	\begin{cases}
+		t(0)= c,\ t(1)= c'\\
+		t(n)= 3t(n-1) - 2t(n-2) + 1,\ n > 1.
+	\end{cases}
+\]
+¿Qué forma tiene su solución?
+\begin{enumerate}
+	\item[(a)] $u_0 + u_1n + u_2n^2$
+	\item[(b)] $u_0 + v_0 2^n + v_1n2^n$
+	\item[(c)] $v_02^n + v_1n2^n + v_2n^22^n$
+	\item[(d)] $u_0 + u_1n + v_02^n$
+\end{enumerate}\end{document}
