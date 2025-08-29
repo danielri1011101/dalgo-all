@@ -11,11 +11,6 @@
 
 %
 
-\begin{frame}{Quiz}
-\end{frame}
-
-%
-
 \begin{frame}{LRRs - Homogenization trick}
 	\begin{thm}[2]\label{ht}
 		If the initial value problem
@@ -392,11 +387,9 @@
 		\end{cases}
 	\]
 	It follows from a routine proof by induction that
-	\begin{prop}
 		\[
 			S(n,k) = \binom{n}{k} - 1.
-		\]
-	\end{prop}
+		\] 
 \end{frame}
 
 %
@@ -419,6 +412,32 @@
 	\]
 \end{frame}
 
+%
+
+\begin{frame}{DP - Binomial coefficients}
+	Hower, if we can manage to ``just write down Pascal's triangle'', the
+	computation becomes much cheaper.
+	\[
+		\begin{array}{cccccc}
+			1 & & & & & \\
+			1 & 1 & & & & \\ \pause
+			1 & 2 & 1 & & & \\ \pause
+			1 & 3 & 3 & 1 & & \\ \pause
+			1 & 4 & 6 & 4 & 1 & \\ \pause
+			1 & 5 & 10 & 10 & 5 & 1\\
+			 & \cdots & & & & 
+		\end{array}\pause
+	\]
+	We just keep an array of length $k$ and update it at each step.
+\end{frame}
+
+%
+
+\begin{frame}{DP - Binomial coefficients}
+	\lstinputlisting[language=Java, firstline=8, lastline=22]{Aula07.java}\pause
+	\emph{What are the time and space complexities of} \texttt{goodBc}?
+\end{frame}
+
 % World series
 \begin{frame}{DP - Mario Kart world cup finals}
 	\centering
@@ -430,5 +449,84 @@
 	\medskip
 	\includegraphics[width=0.3\textwidth]{karolg.png}
 	\includegraphics[width=0.3\textwidth]{peach.png}
+\end{frame}
+
+%
+
+\begin{frame}{DP - Mario Kart}
+	Two players, A and B, compete to be the first to win $n$ races.
+
+	\bigskip
+	We assume the results of the races are independent, so that the probability
+	of A winning a single race is always $p \in (0,1)$ and  that of B is always
+	$q = 1-p$.
+
+	\bigskip
+	Let $P(i,j)$ denote the probability that A will be the overall winner, given
+	that it must win $i$ more races and B must win $j$ more races. Then
+
+	\[
+		\begin{cases}
+			P(0,j) = 1\\
+			P(i,0) = 0\\ 
+			P(i,j) = pP(i-1,j) + qP(i,j-1),\ i > 0 \land j > 0.
+		\end{cases}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{DP - Mario Kart}
+	We then use the recurrence to implement the naive algoritm:
+	\lstinputlisting[language=Java, firstline=61, lastline=70]{Aula07.java}
+	How bad is it?
+\end{frame}
+
+%
+
+\begin{frame}{DP - Mario Kart}
+	We reformulate the problem by letting $P'(m,j)$ denote the probability that
+	A will win given that B must win $j$ more races and A must win $m-j$ more
+	races. Namely, $m = i+j$ in the previous formulation. Then $P'$ satisfies
+	the recurrence
+	\[
+		\begin{cases}
+			P'(j,j)= 1,\ P'(m,0)= 1\\
+			P'(m,j) = pP'(m-1,j) + qP'(m-1,j-1),\ j > 0 \land m-j > 0.
+		\end{cases}
+	\]
+	It follows that
+	\[
+		O(t_{\texttt{badMarioKart}}) = O(t_{\texttt{badBc}}).
+	\]
+	In particular, to compute the value of interest $P(n,n) = P'(2n,n)$ we have
+	\[
+		t_{\texttt{badMarioKart}} \in \Omega(2^n).
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{DP - Mario Kart}
+	However, if we record the values of $P(i,j)$ from smallest to largest values
+	of the indices (a.k.a. \emph{bottom-up solving}), time complexity becomes
+	quadratic:
+	\lstinputlisting[language=Java, firstline=40, lastline=45]{Aula07.java}
+\end{frame}
+
+%
+
+\begin{frame}{DP - Mario Kart}
+	\lstinputlisting[language=Java, firstline=46, lastline=59]{Aula07.java}
+\end{frame}
+
+%
+
+\begin{frame}{Dynamic programming}
+	\centering
+	\includegraphics[width=0.6\textwidth]{tyler2.png}
+
+	\bigskip
+	``\emph{So you see, we trade time with space complexity. Happy now?}\,''
 \end{frame}
 \end{document}

@@ -5,10 +5,10 @@ public class Aula07 {
 	 * by summing the rows of Pascal's triangle.
 	 * @assert 0 \leq k \leq n
 	 */
-	int bc(int n, int k) {
+	int goodBc(int n, int k) {
 		int[] memo= new int[k+1];
-		int m= 0;
 		memo[0]= 1;
+		int m= 0;
 		while (m < n) {
 			m++;
 			int[] temp= new int[k+1];
@@ -37,7 +37,7 @@ public class Aula07 {
 	 * memo[i][j]= probability that A will be the champion given that it has to
 	 * win i more races and B has to win j more races.
 	 */
-	float marioKart(float p, int n) {
+	float goodMarioKart(float p, int n) {
 		float[][] memo= new float[n+1][n+1];
 		int i= 1;
 		int j= 1;
@@ -68,7 +68,7 @@ public class Aula07 {
 		float q= 1-p;
 		return p*badMarioKart(p,i-1,j) + q*badMarioKart(p,i,j-1);
 	}
-	
+
 	public static void main(String[] args) {
 		Aula07 au= new Aula07();
 		System.out.println("Hola dalgo!");
