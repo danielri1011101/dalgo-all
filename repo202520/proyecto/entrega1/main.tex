@@ -1,7 +1,7 @@
 \documentclass{amsart}
 \input{preamble}
 
-\title{Proyecto 1 \\ ISIS1105 202520}
+\title{Proyecto 1\\ ISIS1105 202520}
 \author{Rubén Manrique}
 
 \begin{document}
@@ -17,9 +17,38 @@ Robots Creativos. Uno de los desafíos consiste en que cada robot debe distribui
 una cantidad total de energía $n$ en exactamente $k$ celdas, de modo que la suma de
 las energías asignadas a cada celda corresponda al total de energía $n$.
 
-\bigskip
-El jurado del festival considera creativas únicamente aquellas celdas cuyos números
-contienen los dígitos 3, 6 o 9. La cantidad de puntos de creatividad obtenida por
-una celda depende tanto del dígito como de su posición en el número, según la
-siguiente tabla:
+\subsection{Puntuación}
+Una celda otorga puntos de acuerdo a los dígitos de la expansión decimal de la
+cantidad de energía almacenada en ella. Sólamente los dígitos múltiplos de 3 otorgan
+puntos, de acuerdo a su posición en la expansión decimal. Las únicas posiciones
+relevantes son las primeras cinco, leídas de derecha a izquierda. La fórmula del
+puntaje entregado por una celda es la siguiente:
+
+\[
+	P= v_0P_0 + v_1 P_1 + v_2 P_2 + v_3 P_3 + v_4 P_4
+\]
+
+donde $P_i$ es el puntaje asignado por los jueces a la posición $i$-ésima y
+\[
+	v_i= \alpha(d_i)
+\]
+
+donde
+\[
+	\alpha(m)=
+	\begin{cases}
+		0,\ \ m \ \mathbf{mod}\ 3 \not= 0\\
+		m/3,\ \ m\ \mathbf{mod}\ 3 = 0
+	\end{cases}
+\]
+
+donde
+
+\[
+	E = d_010^0 + d_110^1 + d_210^2 + d_310^3 + d_410^4 + q10^5
+\]
+
+y $E$ es la cantidad de energía almacenada en la celda.
+
+\subsection{Ejemplos}
 \end{document}
