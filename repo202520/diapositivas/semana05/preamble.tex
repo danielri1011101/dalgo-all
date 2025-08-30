@@ -1,1 +1,17 @@
 \usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{mygreen}{RGB}{10,120,60}
+
+% Display of code
+\lstdefinestyle{astyle}{
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{purple},
+	commentstyle=\color{mygreen},
+	stringstyle=\color{blue},
+	numberstyle=\tiny,
+	showstringspaces=false,
+	breaklines=true,
+}
+\lstset{style=astyle}
