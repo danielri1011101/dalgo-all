@@ -24,6 +24,25 @@ public class Aula08 {
 		return ans;
 	}
 
+	/**
+	 * @param val is the value to compose
+	 * @param cs is the array of coin denominations, ordered increasingly.
+	 */
+	int dpMakeChange(int val, int[] cs) {
+		int n= cs.length;
+		int[][] memo= new int[n+1][val+1];
+		for (int i= 1; i <= n; i++) {
+			for (int j= 1; j <= val; j++) {
+				if (i == 1) {
+					memo[i][j]= j;
+				}
+				memo[i][j]= Math.min(1 + memo[i][j-cs[i-1]],
+						memo[i-1][j]);
+			}
+		}
+		return memo[n][val];
+	}
+
 	public static void printArray(int[] arr) {
 		System.out.print("{");
 		int n= arr.length;

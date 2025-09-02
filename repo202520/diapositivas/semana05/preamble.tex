@@ -1,6 +1,18 @@
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{listings}
+
+% Commands
+%% Number sets
+\newcommand{\NN}{\mathbf{N}} % Naturals
+\newcommand{\ZZ}{\mathbf{Z}} % Integers
+\newcommand{\Zpos}{\ZZ^+} % Positive integers
+
+% Environments: formal statements
+\theoremstyle{definition}
+\newtheorem{exl}{Example} % Examples
+\newtheorem{exr}{Exercise} % Exercises
 
 \definecolor{mygreen}{RGB}{10,120,60}
 
@@ -13,5 +25,6 @@
 	numberstyle=\tiny,
 	showstringspaces=false,
 	breaklines=true,
+	tabsize=4,
 }
 \lstset{style=astyle}
