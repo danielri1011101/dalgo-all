@@ -18,4 +18,4 @@ public class Aula04 {
 	public static void main(String[] args) {
 		System.out.println(hanoi(4,1,2));
 	}
-}
+} // check for pat regen.
