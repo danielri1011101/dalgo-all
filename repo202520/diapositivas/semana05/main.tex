@@ -224,4 +224,114 @@
 		6          & 1 & 6 & 7 & 8 & 18 & 22 & 28 & 29 & 34 & 35 & 40\\\hline
 	\end{tabular} 
 \end{frame}
+
+%
+
+\begin{frame}{Matrix bracketing}
+	Matrix multiplication is associative, so given the matrices
+	$A \in \Rmat{p}{q}$, $B \in \Rmat{q}{r}$, and $C \in \Rmat{r}{s}$ we have
+	two possible bracketings of their product:
+
+	\(
+		(AB)C
+	\)
+	and
+	\(
+		A(BC)
+	\).
+
+	\bigskip
+	The cost of computing the row-by-column product $AB$ is $pqr$ (Exercise),
+	so the cost of the first bracketing is $pqr + prs$ and that of the second is
+	$pqs + qrs$. We prefer whichever is smallest!
+
+	\bigskip
+	\textbf{Convention}. The default association will be to the left, so that
+	\[
+		\begin{array}{l}
+			ABC= (AB)C\\
+			A(BC)D= (A(BC))D\\
+			AB(CD)= (AB)(CD)\\
+			\text{etc}\ldots
+		\end{array}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{Matrix bracketing}
+	\begin{exl}
+		If $A \in \Rmat{1}{2}$, $B \in \Rmat{2}{3}$, and $C \in \Rmat{3}{1}$,
+		what is the cheapest bracketing for their product?
+	\end{exl}
+
+	\begin{exl}
+		Same question for $A \in \Rmat{3}{2}$, $B \in \Rmat{2}{5}$,
+		$C \in \Rmat{5}{1}$, and $D \in \Rmat{1}{4}$.
+	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}{Matrix bracketing - DP}
+	$A \in \Rmat{3}{2}$, $B \in \Rmat{2}{5}$, $C \in \Rmat{5}{1}$, and
+	$D \in \Rmat{1}{4}$. 
+
+	\bigskip
+	To use dynamic programming, fill the table \textbf{memo} so that
+	\textbf{memo[i][j]} is the number of multiplications required by the
+	best bracketing of the product of $M_i, \ldots, M_j$.
+\end{frame}
+
+%
+
+\begin{frame}{Matrix bracketing - DP}
+	\lstinputlisting[language=Java, firstline= 128, lastline= 132]{Aula09.java}
+\end{frame}
+
+%
+
+\begin{frame}{Matrix bracketing - DP}
+	\lstinputlisting[language=Java, firstline= 133, lastline= 153]{Aula09.java}
+\end{frame}
+
+%
+
+\begin{frame}{Using a memory function - matrix bracketing}
+	We introduced dynamic programming as an alternative to inefficient recursive
+	algorithms. However, we can make recursive calls and avoid full-depth
+	recursion if we update the memory every time we solve a small subproblem:
+
+	\lstinputlisting[language=Java, firstline= 176, lastline= 176]{Aula09.java}
+	\lstinputlisting[language=Java, firstline= 182, lastline= 188]{Aula09.java}
+\end{frame}
+
+%
+
+\begin{frame}{Using a memory function - matrix bracketing}
+	\lstinputlisting[language=Java, firstline= 189, lastline= 200]{Aula09.java}
+\end{frame}
+
+%
+
+\begin{frame}{Using a memory function - matrix bracketing}
+	And the full problem is solved by a call of the form
+	\lstinputlisting[language=Java, firstline= 159, lastline= 168]{Aula09.java}
+\end{frame}
+
+%
+
+\begin{frame}{Using a memory function - knapsack}
+	The same approach works for solving the knapsack problem. Our memory
+	\textbf{mvt} is such that \textbf{mvt[w]} is the maximum value that can be
+	carried with weight limit \textbf{w}.
+
+	\lstinputlisting[language=Java, firstline= 81, lastline= 88]{Aula09.java}
+\end{frame}
+
+%
+
+\begin{frame}{Using a memory function - knapsack}
+	\lstinputlisting[language=Java, firstline= 90, lastline= 105]{Aula09.java}
+\end{frame}
 \end{document}
