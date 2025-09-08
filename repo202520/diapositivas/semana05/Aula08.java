@@ -57,7 +57,7 @@ public class Aula08 {
 		int[] denoms= {5,4,2,1};
 		int[] values= {8, 11, 18};
 		for (int v : values) {
-			printArray(au.gMakeChange(denoms, v));
+			printArray(au.dpMakeChange(v, denoms));
 		}
 		System.out.println("Hola dalgo!");
 	}

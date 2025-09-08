@@ -1,6 +1,10 @@
 public class Aula10 {
 
 	/**
+	 * Lines 41-43 are for LaTeX display of today's class discussion
+	 */
+
+	/**
 	 * A complete solution of the knapsack problem, which returns an optimal
 	 * choice of items
 	 * @return boolean[] its, its[i] iff i-th item is included in the solution
@@ -11,18 +15,13 @@ public class Aula10 {
 	boolean[] knapsack(int[] ws, int[] vs, int maxW) {
 		int n= ws.length;
 
-		// memo[i][j] == max value for items 0..i and capacity j.
+		// Compute maximum value for weight limit maxW
 		int[][] memo= new int[n][maxW+1];
-
-		// its[i] <=> i-th item belongs in the knapsack.
-		boolean[][] mits= new boolean[maxW+1][n];
-
 		for (int j= 0; j <= maxW; j++) {
 			int v0= vs[0];
 			int w0= ws[0];
 			if (j >= w0) {
 				memo[0][j]= v0;
-				mits[j][0]= true;
 			}
 		}
 		for (int i= 1; i < n; i++) {
@@ -32,15 +31,29 @@ public class Aula10 {
 				int r= j-wi;
 				if (r >= 0 && vi + memo[i-1][j-wi] > memo[i-1][j]) {
 					memo[i][j]= vi + memo[i-1][j-wi];
-					mits[j]= mits[j-wi];
-					mits[j][i]= true;
 				}
 				else {
 					memo[i][j]= memo[i-1][j];
 				}
 			}
 		}
-		boolean[] its= mits[maxW];
+
+		/**
+		 * {Solve knapsack by filling memo...}
+		 */
+
+		// Back-track to obtain choice of items
+		boolean[] its= new boolean[n];
+		int r= maxW;
+		for (int i= n-1; i > 0; i--) {
+			int wi= ws[i];
+			int vi= vs[i];
+			int ri= r-wi;
+			if (ri >= 0 && memo[i][r] == memo[i-1][ri] + vi) {
+				its[i]= true;
+				r= ri;
+			}
+		}
 		return its;
 	}
 
