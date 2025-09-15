@@ -1,0 +1,25 @@
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Number sets
+
+% Environments
+\theoremstyle{definition}
+\newtheorem{defn} % Definition
+
+% Color definitions
+\definecolor{ecgreen}{RGB}{63, 127, 95} % Eclipse comments green
+
+% Display of code
+\lstdefinestyle{slidesstyle}{
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{purple},
+	showstringspaces=false,
+	numberstyle=\tiny,
+	commentstyle=\color{egreen},
+	tabsize=4,
+	stringstyle=\color{blue},
+}
+
+\lstset{style=slidesstyle}
