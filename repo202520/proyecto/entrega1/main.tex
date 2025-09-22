@@ -1,21 +1,14 @@
-\documentclass{amsart}
 \input{preamble}
-
-\title{Proyecto 1\\ ISIS1105 202520}
-\author{Rubén Manrique}
 
 \begin{document}
 \maketitle
 
-\section*{0. Objetivos}
-
-\section{Condiciones generales}
-
 \section{Descripción del problema}	
 En la ciudad futurista de Tecnotown se celebra anualmente el Festival de los
 Robots Creativos. Uno de los desafíos consiste en que cada robot debe distribuir
-una cantidad total de energía $n$ en exactamente $k$ celdas, de modo que la suma de
-las energías asignadas a cada celda corresponda al total de energía $n$.
+una cantidad total de energía $n \in \Zpos$ en exactamente $k \in \Zpos$ celdas, de
+modo que la suma de las energías asignadas a cada celda corresponda al total de
+energía $n$.
 
 \subsection{Puntuación}
 Una celda otorga puntos de acuerdo a los dígitos de la expansión decimal de la
@@ -24,31 +17,58 @@ puntos, de acuerdo a su posición en la expansión decimal. Las únicas posicion
 relevantes son las primeras cinco, leídas de derecha a izquierda. La fórmula del
 puntaje entregado por una celda es la siguiente:
 
-\[
+\begin{equation}\label{cellscore}
 	P= v_0P_0 + v_1 P_1 + v_2 P_2 + v_3 P_3 + v_4 P_4
-\]
+\end{equation}
 
 donde $P_i$ es el puntaje asignado por los jueces a la posición $i$-ésima y
-\[
+
+\begin{equation}\label{vi}
 	v_i= \alpha(d_i)
-\]
+\end{equation}
 
 donde
-\[
+
+\begin{equation}\label{alpha}
 	\alpha(m)=
-	\begin{cases}
-		0,\ \ m \ \mathbf{mod}\ 3 \not= 0\\
-		m/3,\ \ m\ \mathbf{mod}\ 3 = 0
-	\end{cases}
-\]
+	\left\{
+		\begin{array}{ll}
+			0, & \mbox{$m$ \textbf{mod} $3 \not= 0$}\\
+			m/3, & \mbox{$m$ \textbf{mod} $3 = 0$}
+		\end{array}
+	\right.
+\end{equation}
 
 donde
 
-\[
+\begin{equation}\label{edivalg}
 	E = d_010^0 + d_110^1 + d_210^2 + d_310^3 + d_410^4 + q10^5
-\]
+\end{equation}
 
-y $E$ es la cantidad de energía almacenada en la celda.
+según el algoritmo de la división y $E$ es la cantidad de energía almacenada en
+la celda.
 
-\subsection{Ejemplos}
+\bigskip
+De modo que el robot ganador es aquel que encuentre la manera de distribuir la energía
+en las celdas maximizando el puntaje.
+
+%
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Para cada uno de los casos de prueba del enunciado, escoja una distribución
+		(no necesariamente óptima) de la energía en las celdas y calcule todos los valores
+		---
+		\(
+			P_0, P_1, \ldots, P_4, d_i, v_i
+		\)
+		---que aparecen en las ecuaciones \eqref{cellscore}, \eqref{vi}, \eqref{alpha} y
+		\eqref{edivalg}.
+	\item Determine, para cada uno de los casos de prueba del enunciado, cuáles deberían ser
+		las dimensiones de la tabla \texttt{memo}, la cual se va completando a lo largo de
+		la ejecución del algoritmo.
+	\item Compare este problema con los otros problemas de programación dinámica que se han
+		resuelto en clase y/o tareas y determine cúal es el que usted encuentre más similar,
+		justificando su respuesta en sus propias palabras.
+\end{enumerate}
 \end{document}

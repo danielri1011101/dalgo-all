@@ -100,5 +100,9 @@ public class Aula11 {
 		boolean[][] digAdjMat= {node0Conns1, node1Conns1, node2Conns1};
 		AdjGraph dig= au.new AdjGraph(digNodes, digAdjMat);
 		System.out.println(dig.getValidity());
+
+		/**
+		 * Next is implementing the same directed graphs as LisGraphs
+		 */
 	}
 }
