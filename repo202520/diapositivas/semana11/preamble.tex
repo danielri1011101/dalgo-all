@@ -1,0 +1,36 @@
+\documentclass{beamer}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% Environments
+
+% Sets
+\newcommand{\ZZ}{\mathbf{Z}} % Integers
+\newcommand{\Zpos}{\ZZ^+} % Positive integers
+
+% Colors
+\definecolor{mygreen}{RGB}{50, 128, 50} % Comments green
+\definecolor{primesgray}{RGB}{53, 59, 47} % Gray with parameters set to primes
+
+% Display of code
+\lstdefinestyle{slidesstyle}{
+	basicstyle= \small\ttfamily,
+	keywordstyle= \color{purple},
+	showstringspaces= false,
+	numberstyle= \tiny,
+	commentstyle= \color{mygreen},
+	stringstyle= \color{blue},
+}
+
+\lstset{style= slidesstyle}
+
+% Title page
+\title{Diseño y Análisis de Algoritmos\\ ISIS1105}
+\subtitle{Flujo en redes}
+\author{Daniel R. Barrero R.}
+% %% \institution{Universidad de los Andes} %%
