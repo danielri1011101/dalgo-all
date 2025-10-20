@@ -1,0 +1,78 @@
+\documentclass{amsart}
+
+\input{preambleHomeworks}
+
+\title{isis1105 - 202510 \\ tarea 5}
+\author{sección 3 \\ **Definiciones al final**}
+% \date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{large}
+
+\section{Grafos dirigidos}
+
+Sea $G = \la N, A \ra$ un digrafo y sea $n = \#N$.
+
+\begin{enumerate}
+    \item Determine el mínimo número de aristas que garantiza que un digrafo tenga al menos 1 árbol \emph{dirigido} de recubrimiento.
+    \item ¿Verdadero o Falso? Justifique su respuesta con una demostración o un contraejemplo, según corresponda.
+        \begin{afir}
+            Si para todo $v \in N$ se cumple que $\delta^+(v) = \delta^-(v) > 0$, entonces $G$ es dirigidamente conexo.
+        \end{afir}
+    \item Suponga que para todo $v \in N$ se cumple que $\delta^+(v) = \delta^-(v) = k > 0$. Determine el mínimo $k$ (como función de $n$) que garantiza que $G$ sea \emph{dirigidamente conexo}. \textbf{Ayuda/Advertencia:} $k=1$ sólo funciona para $n=2,3.$
+\end{enumerate}
+
+\section{Búsqueda en grafos}
+
+\begin{enumerate}
+    \item Escriba los algoritmos \texttt{hasCyclesDFS, hasCyclesBFS} que para un grafo conexo $G$ retoran \textbf{true} si tiene algún ciclo y \textbf{false} de lo contrario.
+    \item Escriba los algoritmos \texttt{hasDirCyclesDFS, hasDirCyclesBFS} que para un digrafo conexo $G$ retoran \textbf{true} si tiene algún \emph{ciclo dirigido} y \textbf{false} de lo contrario.
+    \item Escriba el algoritmo \texttt{connectedComponents} que para un grafo $G$ retora cuántas componentes conexas tiene. Puede usar BFS o DFS como subrutina, según prefiera.
+\end{enumerate}
+
+\section{Distancias mínimas}
+
+\begin{enumerate}
+    \item Escriba el algoritmo \texttt{pathsDijkstra} para un digrafo $G$ con pesos no-negativos. El algoritmo ajusta Dijkstra para retornar la ``matriz'' cuyas filas son la secuencia de nodos que forman el camino más corto desde el nodo \emph{source} hasta los demás nodos. Su tipo de retorno puede ser una estructura de datos dinámica como \texttt{ArrayList<Integer>[]} en Java, de modo que no todas las secuencias de nodos deben tener la misma longitud. Si desea usar una estructura estática como \textbf{int}\texttt{[][]}, puede usar la convención de llenar las entradas finales con \texttt{-1}.
+    \item Repita el ejercicio anterior para Bellman-Ford escribiendo el algoritmo \texttt{pathsBellmanFord}. Ahora el digrafo $G$ también puede tener pesos negativos, pero asuma que no tiene ciclos negativos.
+    \item De un ejemplo de un digrafo conexo con 3 nodos *sin ciclos negativos* para el cual Dijkstra no encuentra las distancias mínimas pero Bellman-Ford sí.
+    \item Demuestre que Bellman-Ford no es una restricción de Floyd-Warshall de la siguiente manera: De 2 grafos dirigidos, uno de 4 nodos y uno de 5 nodos, conexos y *con* ciclos negativos, Tales que la fila correspondiente al nodo \emph{source} al final de la ejecución de Floyd-Warshall *no sea* el vector de distancias calculado por Bellman-Ford para ese \emph{source}.
+\end{enumerate}
+
+\section{Flujo en Redes}
+
+\begin{enumerate}
+    \item Implemente Ford-Fulkerson-BFS de modo que también funcione para redes que no son \emph{nice}.
+    \item Haga lo mismo para Ford-Fulkerson-DFS.
+    \item De un ejemplo de una red no-\emph{nice} con al menos 4 nodos internos para la cual las implementaciones actuales de Ford-Fulkerson en el archivo \texttt{FlowNetworks.java} no logran calcular el flujo máximo.
+    \item Sea $G = \la N, A, \mathbf{c} \ra$ un digrafo con función de pesos $\mathbf{c}: A \to \Zpos$ con al menos 1 árbol \emph{dirigido} de recubrimiento y al menos 4 nodos. Describa cómo obtener una red de flujo $X_N = \la N \cup \{\sigma, \tau\}, A' \ra$ donde $A' \supset A$.
+    \item Implemente un ejemplo del ejercicio anterior y determine el flujo calculado por Ford-Fulkerson.
+\end{enumerate}
+
+\newpage
+\thispagestyle{plain}
+
+\section*{DEFINICIONES}
+
+\begin{defn}
+    \begin{enumerate}
+        \item[]
+        \item Decimos que la arista $(u,v)$ de un digrafo \emph{sale} de $u$ y \emph{llega} a $v$.
+        \item Dado un vértice $v$ en un digrafo, su \emph{grado de salida} es el número de aristas que salen de $v$ y se denota $\delta^-(v)$. Análogamente, su \emph{grado de llegada} es el número de aristas que llegan a $v$ y se denota $\delta^+(v)$.
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}
+    \begin{enumerate}
+        \item[]
+        \item Un \emph{camino natural} en un digrafo es una secuencia de nodos $v_0,...,v_{k}$ tal que $(v_i, v_{i+1}) \in A$ para $i = 0,...,k-1$.
+        \item Un digrafo es \emph{dirigidamente conexo} si existe un camino natural entre cualquier pareja de nodos.
+    \end{enumerate}
+\end{defn}
+
+\end{large}
+
+\end{document}

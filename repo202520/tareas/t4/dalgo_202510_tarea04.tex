@@ -1,0 +1,99 @@
+\documentclass{amsart}
+
+\input{preambleHomeworks}
+
+\title{isis1105 - 202510 \\ tarea 4}
+\author{sección 3}
+% \date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{large}
+
+\section*{Calentamiento} Estos ejercicios no suman puntos de la tarea, son ejercicios fáciles para practicar grafos y las estructuras de datos que usamos para implementar los algoritmos.
+
+\begin{enumerate}
+    \item De 5 contraejemplos a la afirmación ``Un ciclo de longitud $k\geq 3$ en $G$ es un subgrafo conexo con igual cantidad de nodos y aristas, donde esta cantidad es al menos 3."
+    \item[] 
+    \item Dibuje 3 grafos con al menos 6 nodos tales que todos los nodos tienen grado 2. ¿Son conexos? Repita el ejercicio, esta vez escogiendo una pareja excepcional cuyos nodos tienen grado 3. ¿Son conexos?
+    \item[] 
+    \item Demuestre que si $G$ tiene $n$ nodos, existen subgrafos con $n-1$ aristas que no son árboles de recubrimiento.
+    \item[] 
+    \item Genere 4 grafos aleatorios, con al menos 5 nodos, y dibuje el progreso de la partición en \texttt{Kruskal.java}, tanto en forma de conjuntos de nodos como de árboles.
+    \item[] \begin{itemize}
+        \item[]
+        \item[] Para generar un grafo aleatorio con  $n$ nodos y $k$ aristas usando \texttt{random.org}, pida al \emph{Random Integer Set Generator} un conjunto aleatorio con $k$ enteros en el rango $[0, \frac{n(n-1)}{2}-1]$. Estos serán el atributo \texttt{mask} de las aristas según \texttt{Kruskal.java}. Después pida $k$ enteros positivos al \emph{Random Integer Generator} en el rango que desee para asignar los pesos (tiene sentido que pueda haber repeticiones).
+    \end{itemize} 
+\end{enumerate}
+
+\bigskip
+
+\section{Grafos}
+
+\begin{enumerate}
+	\item Demuestre que si $G$ es un grafo conexo con $n$ nodos y $T \leq G$ es un árbol de recubrimiento, agregar una arista a $T$ resulta en un subgrafo con exactamente 1 ciclo.
+    \item[] 
+    \item Sea $G$ un grafo con $n$ nodos. Determine el mínimo número de aristas que garantiza que $G$ sea conexo y demuestre su respuesta. \begin{itemize}
+        \item[] [\emph{Ayuda:} Haga muchos dibujos empezando con poquitos nodos, y agregue aristas evitando que sea conexo.]
+        \item[]
+    \end{itemize}
+    \item[] 
+    \item Demuestre que $G' \leq G$ es un $k-$ciclo si y sólo si consiste de $k$ nodos de grado 2 y es conexo.
+        \begin{itemize}
+            \item[] [\emph{Ayuda:} Use el principio del palomar.]
+        \end{itemize}
+\end{enumerate}
+
+\bigskip
+
+\section{Path Compression} 
+
+En nuestra implementación actual de \texttt{kruskal}, la operación más económica es \texttt{union} con complejidad $O(1)$. Mientras tanto, \texttt{find} es $O(\log n)$. Podemos usar \emph{path compression} para implementar \texttt{smartFind}, que para grafos suficientemente grandes es $O(1)$ y hace que \texttt{kruskal} sea $O(n)$, si ignoramos el paso de ordenar las aristas por peso.
+
+La idea es la siguiente: El llamado \texttt{find(u)} retorna la raíz del árbol al que el nodo \texttt{u} pertenece. Llamemos \texttt{r} a dicho resultado. Suponga que guardamos una referencia \textbf{int} \texttt{temp = r}. En el camino desde \texttt{u} hasta \texttt{r}, probablemente visitamos los nodos $\mathtt{v_1, v_2,..., v_t}$. Usando la referencia \texttt{temp}, volvemos a visitar estos nodos, esta vez haciendo que apunten directamente a \texttt{r}. En nuestra clase \texttt{Kruskal.java}, esto sería la instrucción
+
+$$
+\mathtt{pp.prttn[v_j] = r;} 
+$$
+
+donde \texttt{pp} es una \texttt{Partition}.
+
+\begin{enumerate}
+    \item Implemente \texttt{smartFind} y úselo para reemplazar \texttt{find} en la estructura de datos \texttt{Partition}. (No está obligado a hacerlo dentro de \texttt{Kruskal.java}).
+    \item[] 
+    \item Ahora a medida que se ejecuta el algoritmo, el arreglo \texttt{heights} deja de almacenar las alturas de los árboles que representan los conjuntos de la partición. ¿Por qué esto no afecta el tiempo de ejecución de \texttt{union}?
+    \item[] 
+    \item Explique qué sucede si se implementa \texttt{kruskal} con \texttt{badUnion} y \texttt{smartFind} en \texttt{Kruskal.java}. Determine el orden de complejidad analizando el peor de los casos. No hace falta una demostración formal.
+\end{enumerate}
+
+\bigskip
+
+\section{Algoritmo de Jarnik-Prim.}
+
+Este es otro algoritmo avaro que calcula un mínimo árbol de recubrimiento. Suponga que los nodos de $G$ son $\{0,1,2,...,n\}$ y que $G$ es conexo.
+
+\begin{itemize}
+    \item[] 
+    \item El conjunto $B$ consiste de nodos y se inicializa con $B \leftarrow \{0\}$; El conjunto $T$ consiste de aristas y se inicializa con $T \leftarrow \emptyset$.
+    \item[] 
+    \item El conjunto $A$ de aristas se ordena por pesos.
+    \item[] 
+    \item \texttt{<loop>} Se busca en $A$ el eje más liviano $\mathbf{e} = \{u,v\}$ tal que $u \in B \ \land \ v \notin B$. Entonces se hace la actualización $B \leftarrow B \cup \{u,v\}$; $T \leftarrow T \cup \{\mathbf{e}\}$. Se detiene cuando $\# B = n$.
+    \item[] 
+    \item Retorna $T$.
+    \item[] 
+\end{itemize}
+
+\begin{enumerate}
+    \item Implemente el algoritmo y llámelo \texttt{jPrim}. Asegúrese de que termine exitosamente aún cuando $G$ no es conexo. Compare esto con el resultado de \texttt{kruskal} para grafos no conexos.
+    \item[] 
+    \item La inicialización por defecto es $B \leftarrow \{0\}$; $T \leftarrow \emptyset$. Sea \texttt{jPrim1} el algoritmo que resulta de reemplazar la inicialización por $B \leftarrow \emptyset$; $T \leftarrow \{\mathbf{e}\}$, donde \textbf{e} es la arista más corta. ¿Es diferente el resultado? explique su respuesta.
+\end{enumerate}
+
+\end{large}
+
+
+
+\end{document}
