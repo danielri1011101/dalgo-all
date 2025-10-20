@@ -5,6 +5,9 @@ public class Aula19 {
 	static class LisGraph {
 		List[] adjacency;
 
+		/**
+		 * Standard constructor
+		 */
 		LisGraph(List[] adjacency) {
 			this.adjacency= adjacency;
 		}
