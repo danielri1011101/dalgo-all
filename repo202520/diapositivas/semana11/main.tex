@@ -177,4 +177,80 @@
 \end{frame}
 
 %
+
+\begin{frame}{Computational complexity}
+	\includegraphics[width= 0.6\textwidth]{mario.png}
+
+	\bigskip
+
+	\pause
+	We've used notation such as $O$ and $\Omega$ to describe the worst-case complexity of
+	\emph{algorithms}. We must now turn to the complexity of \emph{computational problems}. 
+\end{frame}
+
+%
+
+\begin{frame}{Computational complexity --- \emph{Church-Turing thesis and models of computation}}
+	\textbf{Models of computation}
+	\begin{itemize}
+		\item Turing machines \checkmark (ISIS1106)
+		\item RAM instructions \checkmark (Every other course)
+		\item Lambda calculus
+		\item Arithmetic circuits
+		\item Boolean circuits
+	\end{itemize}
+
+	\bigskip
+
+	\pause
+	The \textbf{Church-Turing thesis} says that any two of these models are equivalent.
+
+	\bigskip
+
+	\pause
+	Our discussion of computational complexity and so-called ``intractability'' will be in
+	terms of the \emph{RAM} model of computation. 
+\end{frame}
+
+%
+
+\begin{frame}{RAM instructions model of computation}
+	\begin{itemize}
+		\item We will use a \textbf{fixed programming language \underline{with types}},
+			very Java-like.
+		\item[] {\scriptsize \it *We may nonetheless occasionally discuss some statements
+			in terms of Turing machines*}
+	\end{itemize}
+\end{frame}
+
+%
+
+\begin{frame}{Decision problems}
+	\begin{defn}
+		Let $\hat{X}$ be a type of our programming language and let $X \subset \hat{X}$. The
+		\emph{decision problem} defined by $X$ consists of assigning \textbf{true} or 
+		\textbf{false} to the expression $x \in X$ for all $x \in \hat{X}$. 
+	\end{defn}
+
+	\begin{exl}
+		\begin{enumerate}
+			\item $\hat{X}= \ZZ$, $X=$ Primes.
+			\item $\hat{X}= \mathtt{Graph}$, $X= \mathtt{connGraph}$. Namely, the
+				problem of deciding whether or not a graph is connected.
+			\item $\hat{X}= \mathtt{String}$, $X=$ Python programs that stop.
+		\end{enumerate}
+	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}{Decision problems - computability}
+	\begin{defn}
+		The decision problem $X \subset \hat{X}$ is \emph{computable} if there exists
+		a program
+		\[
+			\mathbf{boolean}\ \mathtt{checkX}(\hat{X}\ x)
+		\]
+	\end{defn}
+\end{frame}
 \end{document}
