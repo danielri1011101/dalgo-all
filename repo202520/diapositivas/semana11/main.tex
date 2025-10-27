@@ -227,30 +227,109 @@
 
 \begin{frame}{Decision problems}
 	\begin{defn}
-		Let $\hat{X}$ be a type of our programming language and let $X \subset \hat{X}$. The
-		\emph{decision problem} defined by $X$ consists of assigning \textbf{true} or 
-		\textbf{false} to the expression $x \in X$ for all $x \in \hat{X}$. 
+		Let $\hat{X}$ be a type of our programming language and let
+		$X \subset \hat{X}$. The \emph{decision problem} defined by $X$ consists
+		of assigning \textbf{true} or \textbf{false} to the expression $x \in X$
+		for all $x \in \hat{X}$. 
 	\end{defn}
 
+	\pause
 	\begin{exl}
 		\begin{enumerate}
 			\item $\hat{X}= \ZZ$, $X=$ Primes.
-			\item $\hat{X}= \mathtt{Graph}$, $X= \mathtt{connGraph}$. Namely, the
-				problem of deciding whether or not a graph is connected.
+			\item $\hat{X}= \mathtt{Graph}$, $X= \mathtt{connGraph}$. Namely,
+				the problem of deciding whether or not a graph is
+				connected.
 			\item $\hat{X}= \mathtt{String}$, $X=$ Python programs that stop.
 		\end{enumerate}
 	\end{exl}
+
+	\pause
+	\textbf{Notation.} We will use $X \subset \hat{X}$ to denote the decision problem
+	defined by $X$.
 \end{frame}
 
 %
 
 \begin{frame}{Decision problems - computability}
 	\begin{defn}
-		The decision problem $X \subset \hat{X}$ is \emph{computable} if there exists
-		a program
+		The decision problem $X \subset \hat{X}$ is \emph{computable} if there
+		exists a program
 		\[
 			\mathbf{boolean}\ \mathtt{checkX}(\hat{X}\ x)
 		\]
+
+		such that \(\mathtt{checkX}(x) =\) \textbf{true} if and only if
+		$x \in X$.
 	\end{defn}
+
+	\pause
+	\begin{exl}
+		Examples 1 and 2 from the previous slide are computable, example 3 is
+		not.
+	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}{Computable decision problems - Complexity classes}
+	\begin{defn}
+		The computable decision problem $X \subset \hat{X}$ is
+		\emph{of class $P$} or is said to have \emph{polynomial time complexity}
+		if there exists $k \in \Zpos$ such that
+		\[
+			\mathtt{checkX} \in O(n^k),
+		\]
+		where $n$ is the size of the input $x \in \hat{X}$.
+	\end{defn}
+
+	\pause
+	\begin{exl}
+		Examples 1 and 2 from the previous slide are computable, example 3 is
+		not.
+	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}{Computable decision problems - Complexity classes}
+	\begin{defn}
+		The computable decision problem $X \subset \hat{X}$ is
+		\emph{of class $NP$} or is said to have
+		\emph{non-deterministic polynomial time complexity} if there exist
+		a type $Q$, a decision problem $Z \subset \hat{X} \times Q$, and a
+		polynomial $p(n)$ satisfying the following conditions:
+		\begin{itemize}
+			\item $x \in X$ if and only if there exists $q \in Q$ such that
+				$(x, q) \in Z$.
+			\item For all $(x, q) \in Z$ the size of $q$ is at most $p(n)$
+				where $n$ is the size of $x$.
+			\item \texttt{checkZ} is of class $P$.
+		\end{itemize}
+
+		The decision problem $Z \subset \hat{X} \times Q$ is called a
+		\emph{proof system} for $X \subset \hat{X}$.
+	\end{defn}
+\end{frame}
+
+%
+
+\begin{frame}{NP problems}
+	\begin{exl}
+		The problem
+		\[
+			\overline{\text{Primes}} \subset \ZZ
+		\]
+		of wheter or not a number is composite admits the proof system
+		\[
+			Z= \{(n, a) : 1 < |a| < |n|,\ \ n \ 
+				\mathbf{mod}\ a = 0\}
+		\]
+		and
+		\(
+			Z \subset \ZZ \times \ZZ \in P
+		\)
+		since it consists of dividing $n$ by $a$.
+	\end{exl}
 \end{frame}
 \end{document}
