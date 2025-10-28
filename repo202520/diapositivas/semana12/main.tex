@@ -117,9 +117,23 @@
 				\)
 				by taking \texttt{checkX} $=$ \texttt{isPrime} from the
 				next slide.
-			\item The problem \texttt{connGraph} $\subset$ \texttt{Graph}
+			\item The problem 
+				\(
+					\mathtt{connGraph} \subset \mathtt{Graph} \in P
+				\)
+				by taking \texttt{checkX} $=$ \texttt{dfs}.
 		\end{enumerate}
 	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}{Computable decision problems - Complexity classes}
+	This primality test is based on Erathosthenes' theorem and Bolzano-Cauchy
+	interpolation.
+
+	\bigskip
+	\lstinputlisting[language= Java, firstline= 3, lastline= 14]{Aula21.java}
 \end{frame}
 
 %
@@ -131,13 +145,13 @@
 		\emph{non-deterministic polynomial time complexity} if there exist
 		a type $Q$, a decision problem $Z \subset \hat{X} \times Q$, and a
 		polynomial $p(n)$ satisfying the following conditions:
-		\begin{itemize}
+		\begin{enumerate}
 			\item $x \in X$ if and only if there exists $q \in Q$ such that
 				$(x, q) \in Z$.
 			\item For all $(x, q) \in Z$ the size of $q$ is at most $p(n)$
 				where $n$ is the size of $x$.
 			\item \texttt{checkZ} is of class $P$.
-		\end{itemize}
+		\end{enumerate}
 
 		The decision problem $Z \subset \hat{X} \times Q$ is called a
 		\emph{proof system} for $X \subset \hat{X}$.
@@ -162,6 +176,104 @@
 			Z \subset \ZZ \times \ZZ \in P
 		\)
 		since it consists of dividing $n$ by $a$.
+
+		\bigskip
+		\begin{qsn}
+			The above argument about the proof system
+			\(
+				Z \subset \ZZ \times \ZZ
+			\)
+			only checks condition 3. Why does it also satisfy conditions 1 and 2? 
+		\end{qsn}
+	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}
+	\begin{defn}
+		A graph is said to be \emph{Hamiltonian} if it contains a simple cycle.
+
+		\bigskip
+		\bigskip
+		
+		\begin{tikzpicture}
+			% Hamiltonian example nodes
+			\node[shape= circle, draw] (N1) at (0, 1) {1};
+			\node[shape= circle, draw] (N2) at (2, 1) {2};
+			\node[shape= circle, draw] (N3) at (2, -1) {3};
+			\node[shape= circle, draw] (N4) at (0, -1) {4};
+			\node[shape= circle, draw] (N0) at (1, 0) {0};
+			% Hamiltonian example connections
+			\draw (N0) -- (N1);
+			\draw (N0) -- (N2);
+			\draw (N1) -- (N2);
+			\draw (N2) -- (N3);
+			\draw (N3) -- (N4);
+			\draw (N4) -- (N1);
+			% Not hamiltonian example nodes
+			\node[shape= circle, draw] (N1') at (4, 1) {1};
+			\node[shape= circle, draw] (N2') at (6, 1) {2};
+			\node[shape= circle, draw] (N3') at (6, -1) {3};
+			\node[shape= circle, draw] (N4') at (4, -1) {4};
+			\node[shape= circle, draw] (N0') at (5, 0) {0};
+			% Not hamiltonian example connections
+			\draw (N0') -- (N1');
+			\draw (N1') -- (N2');
+			\draw (N2') -- (N3');
+			\draw (N3') -- (N4');
+			\draw (N4') -- (N1');
+		\end{tikzpicture}
+	\end{defn}
+\end{frame}
+
+\begin{frame}{NP problems}
+	\begin{tikzpicture}
+		% Hamiltonian example nodes
+		\node[shape= circle, draw] (N1) at (0, 1) {1};
+		\node[shape= circle, draw] (N2) at (2, 1) {2};
+		\node[shape= circle, draw] (N3) at (2, -1) {3};
+		\node[shape= circle, draw] (N4) at (0, -1) {4};
+		\node[shape= circle, draw] (N0) at (1, 0) {0};
+		% Hamiltonian example connections
+		\draw (N0) -- (N1);
+		\draw (N0) -- (N2);
+		\draw (N1) -- (N2);
+		\draw (N2) -- (N3);
+		\draw (N3) -- (N4);
+		\draw (N4) -- (N1);
+		% Not hamiltonian example nodes
+		\node[shape= circle, draw] (N1') at (4, 1) {1};
+		\node[shape= circle, draw] (N2') at (6, 1) {2};
+		\node[shape= circle, draw] (N3') at (6, -1) {3};
+		\node[shape= circle, draw] (N4') at (4, -1) {4};
+		\node[shape= circle, draw] (N0') at (5, 0) {0};
+		% Not hamiltonian example connections
+		\draw (N0') -- (N1');
+		\draw (N1') -- (N2');
+		\draw (N2') -- (N3');
+		\draw (N3') -- (N4');
+		\draw (N4') -- (N1');
+	\end{tikzpicture}
+	\begin{exl}
+		The problem
+		\(
+			\mathtt{Ham} \subset \mathtt{Graph}
+		\)
+		admits the proof system
+		\[
+			Z= \{(g, \mathbf{u}) : B(g, \mathbf{u})\} \subset
+			\mathtt{Graph} \times \ZZ\texttt{[$\,$]}
+		\]
+		where $B(g, \mathbf{u})$ is \textbf{true} if and only if
+		\(
+			\mathbf{u}= [u_0, \ldots, u_{n-1}]
+		\)
+		is a sequence of nodes in $g$ such that 
+		\(
+			\{u_i, u_{(i+1)\ \mathbf{mod}\ n}\} \in A_g
+		\)
+		for $i = 0, \ldots, n-1$.
 	\end{exl}
 \end{frame}
 \end{document}
