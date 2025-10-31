@@ -227,7 +227,7 @@
 	\end{defn}
 \end{frame}
 
-\begin{frame}{NP problems}
+\begin{frame}{NP problems - HamD}
 	\begin{tikzpicture}
 		% Hamiltonian example nodes
 		\node[shape= circle, draw] (N1) at (0, 1) {1};
@@ -275,5 +275,147 @@
 		\)
 		for $i = 0, \ldots, n-1$.
 	\end{exl}
+\end{frame}
+
+%
+
+\begin{frame}{NP problems - HamD}
+	\(
+		Z \subset \mathtt{Graph} \times \ZZ\texttt{[\,]} 
+	\)
+	from the previous slide is a proof system for \texttt{Ham} $\subset$
+	\texttt{Graph} because
+	\begin{enumerate}
+		\item Simple cycles on a graph can be represented with valid
+			non-repeating sequences of nodes.
+		\item For each
+			\(
+				(g, \mathbf{u}) \in Z
+			\)
+			we have $|\mathbf{u}| \in O(|g|)$.
+		\item \texttt{checkZ} is $O(n)$ because it scans \textbf{u} to check
+			if it corresponds to an edge sequence that defines a cycle.
+	\end{enumerate}
+
+	\bigskip
+
+	\textbf{Notation.} We use \texttt{HamD}, read as ``\emph{Hamiltonian decision}'',
+	to denote the decision problem \texttt{Ham} $\subset$ \texttt{Graph}.
+\end{frame}
+
+%
+
+\begin{frame}
+	\begin{defn}
+		Let $G= (N, A)$ be an undirected graph. A \emph{cover} of $G$ is a
+		subset $N' \subset N$ such that $a \cap N' \neq \emptyset$ for all
+		$a \in A$.
+	\end{defn}
+\end{frame}
+
+%
+
+\begin{frame}{NP problems - CovD}
+	\begin{defn}
+		Let
+		\[
+			\begin{array}{l}
+				\hat{X}= \mathtt{Graph} \times \ZZ\ \mbox{ and let}\\
+				X=
+				\{
+					(g, k) |\ \mbox{$g$ has a cover of size $k$}
+				\}. 
+			\end{array}
+		\]
+
+		We then call
+		\(
+			X \subset \hat{X}
+		\)
+		the \emph{cover decision problem} and denote it by \texttt{CovD}.
+	\end{defn}
+
+	\bigskip
+	It is of class $NP$ because it admits a proof system
+	\(
+		Z \subset \hat{X} \times \ZZ\texttt{[\,]}
+	\)
+	given by
+	\[
+		Z=
+		\{
+			((g,k), \mathbf{u}) |\ 
+			\mbox{$\mathbf{u}$ defines a cover of $g$ of size $k$}
+		\}
+	\]
+\end{frame}
+
+%
+
+\begin{frame}{Quiz - 15 min}
+	\centering
+	\includegraphics[width= 0.3\textwidth]{marcela.png}
+
+	\bigskip
+
+	\pause
+	
+	\raggedright
+	Demuestre que $Z$ satisface las propiedades de un sistema de pruebas para
+	\texttt{CovD}.
+\end{frame}
+
+%
+
+\begin{frame}{Reductions}
+	\begin{defn}
+		We say that the problem
+		\(
+			X \subset \hat{X}
+		\)
+		is \emph{polynomial time reducible} to the problem
+		\(
+			Y \subset \hat{Y}
+		\)
+		if there exists an algorithm
+		\[
+			\hat{Y} \ \mathtt{translate}(\hat{X} \ x)
+		\]
+		such that
+		\begin{enumerate}
+			\item
+				\(
+					\tau_{\mathtt{translate}} \in O(n^k)
+				\)
+				for some $k \in \Zpos$ where $n= |x|$.
+			\item
+				\(
+					X = \mathtt{translate}^{-1}(Y).
+				\)	  
+		\end{enumerate}
+
+		We will denote this by
+		\[
+			X \subset \hat{X} \leq_P Y \subset \hat{Y}
+		\]
+		and simply say \emph{reducible} instead of ``polynomial time reducible''.
+	\end{defn}
+\end{frame}
+
+%
+
+\begin{frame}{Reductions}
+	\begin{thm}
+		\begin{enumerate}
+			\item 
+				\(
+					\mathtt{CovD} \leq_P \mathtt{HamD}
+				\) (Hard). \pause
+			\item 
+				\(
+					\mathtt{HamD} \leq_P \mathtt{TSPD}
+				\) (Easy).
+		\end{enumerate}
+	\end{thm}
 \end{frame}
 \end{document}
