@@ -1,0 +1,167 @@
+\input{preamble}
+
+\begin{document}
+\frame{\titlepage}
+
+%
+
+\begin{frame}{Reductions}
+	\begin{dfn}
+		We say that the problem
+		\(
+			X \subset \hat{X}
+		\)
+		is \emph{polynomial time reducible} to the problem
+		\(
+			Y \subset \hat{Y}
+		\)
+		if there exists an algorithm
+		\[
+			\hat{Y} \ \mathtt{translate}(\hat{X} \ x)
+		\]
+		such that
+		\begin{enumerate}
+			\item
+				\(
+					\tau_{\mathtt{translate}} \in O(n^k)
+				\)
+				for some $k \in \Zpos$ where $n= |x|$.
+			\item
+				\(
+					X = \mathtt{translate}^{-1}(Y).
+				\)	  
+		\end{enumerate}
+
+		We will denote this by
+		\[
+			X \subset \hat{X} \leq_P Y \subset \hat{Y}
+		\]
+		and simply say \emph{reducible} instead of ``polynomial time reducible''.
+	\end{dfn}
+\end{frame}
+
+%
+
+\begin{frame}{Theorem: CovD $\leq_P$ HamD}
+	\begin{dfn}
+		A \emph{widget} for an edge $\{u, v\}$ is the graph
+
+		\bigskip
+		\begin{tikzpicture}
+			% uvi nodes
+			\node[shape= circle, inner sep= 2pt, draw, label=above:uv1] (uv1) at (0, 0) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv2) at (0, -1) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv3) at (0, -2) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv4) at (0, -3) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv5) at (0, -4) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv6) at (0, -5) {};
+			% vui nodes
+			\node[shape= circle, inner sep= 2pt, draw] (vu1) at (1, 0) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu2) at (1, -1) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu3) at (1, -2) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu4) at (1, -3) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu5) at (1, -4) {};
+			\node[shape= circle, inner sep= 2pt, draw, label=below:vu6] (vu6) at (1, -5) {};
+			% vertical uv connections
+			\draw (uv1) -- (uv2);
+			\draw (uv2) -- (uv3);
+			\draw (uv3) -- (uv4);
+			\draw (uv4) -- (uv5);
+			\draw (uv5) -- (uv6);
+			% vertical vu connections
+			\draw (vu1) -- (vu2);
+			\draw (vu2) -- (vu3);
+			\draw (vu3) -- (vu4);
+			\draw (vu4) -- (vu5);
+			\draw (vu5) -- (vu6);
+			% crossings
+			\draw (uv1) -- (vu3);
+			\draw (vu1) -- (uv3);
+			\draw (uv4) -- (vu6);
+			\draw (vu4) -- (uv6);
+		\end{tikzpicture}
+	\end{dfn}
+\end{frame}
+
+%
+
+\begin{frame}{Theorem: CovD $\leq_P$ HamD}
+		Widgets can be transversed in four ways:
+
+		\bigskip
+		\begin{tikzpicture}
+			% uvi nodes
+			\node[shape= circle, inner sep= 2pt, draw, label=above:uv1] (uv1) at (0, 0) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv2) at (0, -1) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv3) at (0, -2) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv4) at (0, -3) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv5) at (0, -4) {};
+			\node[shape= circle, inner sep= 2pt, draw, label=below:uv6] (uv6) at (0, -5) {};
+			% vui nodes
+			\node[shape= circle, inner sep= 2pt, draw] (vu1) at (1, 0) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu2) at (1, -1) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu3) at (1, -2) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu4) at (1, -3) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu5) at (1, -4) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu6) at (1, -5) {};
+			% vertical uv connections
+			\draw[color=blue,thick] (uv1) -- (uv2);
+			\draw[color=blue,thick] (uv2) -- (uv3);
+			\draw[color=blue,thick] (uv3) -- (uv4);
+			\draw[color=blue,thick] (uv4) -- (uv5);
+			\draw[color=blue,thick] (uv5) -- (uv6);
+			% vertical vu connections
+			\draw (vu1) -- (vu2);
+			\draw (vu2) -- (vu3);
+			\draw (vu3) -- (vu4);
+			\draw (vu4) -- (vu5);
+			\draw (vu5) -- (vu6);
+			% crossings
+			\draw (uv1) -- (vu3);
+			\draw (vu1) -- (uv3);
+			\draw (uv4) -- (vu6);
+			\draw (vu4) -- (uv6);
+		\end{tikzpicture}
+\end{frame}
+
+%
+
+\begin{frame}{Theorem: CovD $\leq_P$ HamD}
+		Widgets can be transversed in four ways:
+
+		\bigskip
+		\begin{tikzpicture}
+			% uvi nodes
+			\node[shape= circle, inner sep= 2pt, draw, label=above:uv1] (uv1) at (0, 0) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv2) at (0, -1) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv3) at (0, -2) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv4) at (0, -3) {};
+			\node[shape= circle, inner sep= 2pt, draw] (uv5) at (0, -4) {};
+			\node[shape= circle, inner sep= 2pt, draw, label=below:uv6] (uv6) at (0, -5) {};
+			% vui nodes
+			\node[shape= circle, inner sep= 2pt, draw] (vu1) at (1, 0) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu2) at (1, -1) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu3) at (1, -2) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu4) at (1, -3) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu5) at (1, -4) {};
+			\node[shape= circle, inner sep= 2pt, draw] (vu6) at (1, -5) {};
+			% vertical uv connections
+			\draw[color=blue,thick] (uv1) -- (uv2);
+			\draw[color=blue,thick] (uv2) -- (uv3);
+			\draw (uv3) -- (uv4);
+			\draw[color=blue,thick] (uv4) -- (uv5);
+			\draw[color=blue,thick] (uv5) -- (uv6);
+			% vertical vu connections
+			\draw[color=blue,thick] (vu1) -- (vu2);
+			\draw[color=blue,thick] (vu2) -- (vu3);
+			\draw[color=blue,thick] (vu3) -- (vu4);
+			\draw[color=blue,thick] (vu4) -- (vu5);
+			\draw[color=blue,thick] (vu5) -- (vu6);
+			% crossings
+			\draw (uv1) -- (vu3);
+			\draw[color=blue,thick] (vu1) -- (uv3);
+			\draw[color=blue,thick] (uv4) -- (vu6);
+			\draw (vu4) -- (uv6);
+		\end{tikzpicture}
+\end{frame}
+\end{document}

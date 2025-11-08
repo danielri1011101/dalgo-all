@@ -1,0 +1,170 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\section{Teorema de Cook}
+\subsection{Máquinas de Turing} Defina una máquina de Turing
+\(
+	M_\texttt{pow}= (K, \Gamma, \delta, s, h)
+\)
+
+Para decidir el lenguaje
+\[
+	L_\texttt{pow}= \{\texttt{0}^{2^n}\} \subset \{\texttt{0}\}^*
+	.
+\]
+
+Use
+\(
+	\Gamma=
+	\{
+		\mbox{``\texttt{No}'', \texttt{0, x, }$\sqcup$,\ ``\texttt{Yes}''}
+	\}
+\)
+para resolver este problema.
+
+\subsection{Funciones booleanas} La función de transición de una máquina de Turing
+tiene tipo
+\[
+	\delta : K \times \Gamma \to K \times \Gamma \times
+			\{
+				\texttt{L, R}
+			\}
+			.
+\]
+
+Sea 
+\(
+	\mathbf{F}_\delta
+\)
+su codificación como función entre bit-strings. Tiene tipo 
+\[
+	\mathbf{F}_\delta :
+		\langle
+			K \times \Gamma
+		\rangle
+			\to
+		\langle
+			K \times \Gamma \times
+				\{
+					\texttt{L, R}
+				\}
+		\rangle
+		.
+\]
+
+\begin{enumerate}
+	\item Determine el tamaño de los conjuntos
+		\(
+			\langle
+				K \times \Gamma
+			\rangle
+		\)
+		y
+		\(
+			\langle
+				K \times \Gamma \times
+					\{
+						\texttt{L, R}
+					\}
+			\rangle
+			.
+		\)
+	\item Sea
+		\(
+			F_\delta^i :
+				\langle
+					K \times \Gamma
+				\rangle
+					\to
+				\{
+					0, 1
+				\}
+		\)
+		la $i-$ésima componente de
+		\(
+			\mathbf{F}_\delta
+		\)
+		de su solución al ejercicio 1.1. Escoja dos valores de $i$ y
+		calcule los circuitos booleanos equivalentes a estas
+		\(
+			F_\delta^i
+		\).
+\end{enumerate}
+
+%--
+
+\section{Reducciones}
+\subsection{3-CNF-SAT (Incluye uso de IA)}
+Lea la demostración de la $NP-$completitud del problema \texttt{3-CNF-SAT}. La puede
+encontrar como la demostración al teorema 34.10 del texto guía.
+
+\begin{enumerate}
+	\item Explique la demostración en sus propias palabras. Está permitido que pida
+		ayuda a personas o IAs, pero está obligado/a a intentarlo por su cuenta
+		inicialmente. Responda en el siguiente orden
+		\begin{enumerate}
+			\item Escriba aproximadamente cuánto tiempo (en minutos) dedicó a
+				esta tarea por su cuenta. El gran profesor Benjamin
+				C. Pierce de la universidad de Pennsylvania aconseja
+				buscar ayuda para un problema después de mínimo 60
+				minutos y máximo 180 minutos de trabajo 100\%
+				individual.
+			\item Si necesitó pedir ayuda, explique con el mayor detalle
+				posible cuáles fueron las dificultades que tuvo al
+				seguir el argumento lógico, tales como
+				\begin{itemize}
+					\item Símbolos matemáticos y otros tipos de
+						notación difíciles de entender (escriba
+						específicamente cuáles).
+					\item Conclusiones inesperadas como
+						\begin{quote}
+							``\ldots \emph{por lo cual la
+							solución a la ecuación
+							diferencial es}
+							\(
+								f(x) = \sin(x) + 2.
+							\)'' 
+						\end{quote}
+						o como por ejemplo 
+						\begin{quote}
+							``\ldots \emph{y vemos que el
+								área de la esfera es}
+							\(
+								4\pi r^2.
+							\)'' 
+						\end{quote}
+						donde a usted le queda un vacío lógico
+						para aceptar que se trata de una
+						conclusión válida.
+				\end{itemize}
+			\item Escriba si pidió ayuda a personas, IAs, o ambas. En caso
+				de haber usado IAs, diga cuál(es) e incluya tanto sus
+				prompts como las respuestas que recibió. Esto último
+				lo puede incluir como texto o como captura de pantalla,
+				según prefiera.
+		\end{enumerate}
+\end{enumerate}
+
+\subsection{Reducir a decisión}
+\begin{enumerate}
+	\item Demuestre que \texttt{Cov} $\leq_P$ \texttt{CovD}.
+	\item Demuestre que \texttt{Ham} $\leq_P$ \texttt{HamD}.
+	\item Demuestre que \texttt{TSP} $\leq_P$ \texttt{TSPD}.
+\end{enumerate}
+
+\subsection{NP-hardness de TSP}
+\begin{enumerate}
+	\item[] Demuestre que \texttt{HamD} $\leq_P$ \texttt{TSPD}.
+\end{enumerate}
+
+%--
+
+\section{LSP y Factorización}
+\subsection{} Demuestre que \texttt{LSPD} es $NP-$completo.
+\begin{quote}
+	\emph{\textbf{Ayuda:} Demuestre que \mbox{\texttt{HamD} $\leq_P$ \texttt{LSPD}}
+		para hardness.}
+\end{quote}
+\end{document}
