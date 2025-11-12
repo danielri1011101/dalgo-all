@@ -1,0 +1,124 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\section{Funciones de bit-strings}
+\begin{dfn}
+	Sea 
+	\(
+		\alpha \in \{0, 1\}^* 
+	\)
+	un bit-string de longitud $n$. Denotamos su
+	$i-$ésimo bit mediante
+	\(
+		\alpha[i]
+	\)
+	donde
+	\(
+		i \in
+		\{
+			0, 1, \ldots, n-1
+		\}
+	\).
+\end{dfn}
+
+\begin{exl}
+	Si
+	\(
+		\alpha= \texttt{1011}
+	\)
+	entonces
+	\(
+		\alpha[1] = \texttt{0}
+	\)
+	y
+	\(
+		\alpha[2] = \texttt{1}
+	\).
+\end{exl}
+
+\begin{dfn}
+	Sean \texttt{A} y \texttt{B} conjuntos de bit-strings, y sea
+	\[
+		\mathbf{F} : \texttt{A} \to \texttt{B}
+	\]
+	una función. Su $i-$ésima componente es la función
+	\[
+		F^i : \texttt{A} \to \{0, 1\}
+	\]
+	dada por
+	\[
+		F^i(\alpha)= \mathbf{F}(\alpha)[i].
+	\]
+\end{dfn}
+
+%--
+
+\section{Problemas computacionales}
+
+\begin{dfn}
+	Sean $\hat{X}$ y $\hat{Y}$ tipos y sea
+	\[
+		F : \hat{X} \to \hat{Y}
+	\]
+	una función. Esta se dice \emph{calculable} si existe un algoritmo
+	\[
+		\hat{Y}\ \texttt{computeF}(\hat{X}\ x)
+	\]
+	tal que
+	\(
+		\texttt{computeF}(x) = F(x)
+	\)
+	para todo $x \in \hat{X}$.
+\end{dfn}
+
+\begin{dfn}
+	Sea
+	\(
+		F : \hat{X} \to \hat{Y}
+	\)
+	una función calculable. El \emph{problema computacional} asociado a ella
+	consiste en escribir el algoritmo \texttt{computeF}.
+
+	\medskip
+	\begin{quote}
+		 Usamos
+			\(
+				\llbracket
+					F
+				\rrbracket
+			\)
+		para denotar el problema computacional asociado.
+	\end{quote}
+\end{dfn}
+
+\begin{dfn}
+	Sea
+	\(
+		F : \hat{X} \to \hat{Y}
+	\)
+	una función calculable y sea
+	\(
+		Z \subset \hat{Z}
+	\)
+	un problema de decisión. Decimos que
+	\(
+		\llbracket
+			F
+		\rrbracket
+	\)
+	se \emph{reduce} a
+	\(
+		Z \subset \hat{Z}
+	\)
+	si asumir que
+	\(
+		\tau_{\texttt{checkZ}} \in O(1)
+	\)
+	permite escribir \texttt{computeF} con complejidad temporal
+	\(
+		O(n^k)
+	\).
+\end{dfn}
+\end{document}

@@ -3,7 +3,7 @@
 \begin{document}
 \maketitle
 
-\section{Teorema de Cook}
+\section{Teorema de Cook-Levin}
 \subsection{Máquinas de Turing} Defina una máquina de Turing
 \(
 	M_\texttt{pow}= (K, \Gamma, \delta, s, h)
@@ -95,6 +95,7 @@ su codificación como función entre bit-strings. Tiene tipo
 
 %--
 
+\newpage
 \section{Reducciones}
 \subsection{3-CNF-SAT (Incluye uso de IA)}
 Lea la demostración de la $NP-$completitud del problema \texttt{3-CNF-SAT}. La puede
@@ -144,14 +145,43 @@ encontrar como la demostración al teorema 34.10 del texto guía.
 				prompts como las respuestas que recibió. Esto último
 				lo puede incluir como texto o como captura de pantalla,
 				según prefiera.
+			\item Explique la demostración en sus propias palabras, no se
+				preocupe por la falta de rigor.
 		\end{enumerate}
 \end{enumerate}
 
 \subsection{Reducir a decisión}
 \begin{enumerate}
-	\item Demuestre que \texttt{Cov} $\leq_P$ \texttt{CovD}.
-	\item Demuestre que \texttt{Ham} $\leq_P$ \texttt{HamD}.
-	\item Demuestre que \texttt{TSP} $\leq_P$ \texttt{TSPD}.
+	\item Demuestre que
+		\(
+			\llbracket
+			\texttt{Cov}
+			\rrbracket
+			%
+			\leq_P
+			%
+			\texttt{CovD}
+		\).
+	\item Demuestre que
+		\(
+			\llbracket
+			\texttt{Ham}
+			\rrbracket
+			%
+			\leq_P
+			%
+			\texttt{HamD}
+		\).
+	\item Demuestre que
+		\(
+			\llbracket
+			\texttt{TSP}
+			\rrbracket
+			%
+			\leq_P
+			%
+			\texttt{TSPD}
+		\).
 \end{enumerate}
 
 \subsection{NP-hardness de TSP}
@@ -161,10 +191,22 @@ encontrar como la demostración al teorema 34.10 del texto guía.
 
 %--
 
-\section{LSP y Factorización}
+\newpage
+\section{Longest Simple Path}
 \subsection{} Demuestre que \texttt{LSPD} es $NP-$completo.
 \begin{quote}
-	\emph{\textbf{Ayuda:} Demuestre que \mbox{\texttt{HamD} $\leq_P$ \texttt{LSPD}}
-		para hardness.}
+	\emph{\textbf{Ayuda:} Para hardness puede demostrar que \mbox{\texttt{HamD}
+	$\leq_P$ \texttt{LSPD}}.}
 \end{quote}
+
+\subsection{} Demuestre que
+	\(
+		\llbracket
+		\texttt{LSP}
+		\rrbracket
+		%
+		\leq_P
+		%
+		\texttt{LSPD}
+	\).
 \end{document}
