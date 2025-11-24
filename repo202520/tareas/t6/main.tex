@@ -1,0 +1,45 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\section*{ALGORITMOS APROXIMADOS}
+
+\bigskip
+\bigskip
+\bigskip
+
+%
+\section{Cover aproximado}
+\subsection{Casos límite} 
+\begin{enumerate}
+	\item De un ejemplo de un grafo para el cual \texttt{approxCov} retorna un
+		cover minimal si se ordenan adecuadamente las aristas.
+	\item De un ejemplo de un grafo para el cual \texttt{approxCov} es incapaz
+		de retornar un cover minimal sin importar cómo se ordenen las
+		aristas.
+	\item Sea el \emph{covering number} de un grafo el tamaño de sus covers
+		minimales. Sea $q_g$ el covering number del grafo $g$. De una
+		condición sobre $q_g$ que garantice que
+		\[
+			q_g > \# \ \texttt{approxCov(} g \texttt{)}.
+		\]
+\end{enumerate}
+
+\subsection{Aproximación greedy} De un algoritmo avaro de complejidad temporal
+$O(n_g)$ que retorna un cover minimal si $g$ es un árbol. Es decir, si $g$ es
+conexo y tiene exactamente $n_g-1$ aristas.
+
+%
+\newpage
+\section{TSP métrico aproximado}
+\subsection{\emph{Closest-point} heuristic} Sea $g$ un grafo métrico. Considere
+$\{0\}$ como un ciclo de longitud 1, y agregue sucesivamente el nodo $u$ cuyo vecino
+más cercano $v$ se encuentre dentro del ciclo. Modifique las conexiones alrededor
+de $v$ si es necesario, y cierre siempre el ciclo. El proceso termina cuando el ciclo
+es de longitud $n_g$. Demuestre que este algoritmo es 2-aproximado.
+
+%
+\newpage
+\section{Set-cover aproximado}
+\end{document}
