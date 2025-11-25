@@ -42,4 +42,55 @@ es de longitud $n_g$. Demuestre que este algoritmo es 2-aproximado.
 %
 \newpage
 \section{Set-cover aproximado}
+\subsection{Ejecución manual} Considere cada una de las siguientes palabras como un
+conjunto de letras:
+\[
+	\begin{array}{l}
+		\mathcal{F}=
+	\{
+		\texttt{arid, } \texttt{dash, } \texttt{drain, } \texttt{heard, }
+		\texttt{lost, }\\
+		\ \ \ \ \ \ \ \ \texttt{nose, } \texttt{shun, } \texttt{slate, }
+		\texttt{snare, } \texttt{thread}
+	\}.
+	\end{array}
+\]
+
+De este modo, $\mathcal{F}$ es un cover del conjunto
+\[
+	X=
+	\{
+		\texttt{a, d, e, h, i, l, m, n, o, r, s, t, u}
+	\}.
+\]
+
+Determine el retorno de
+\(
+	\texttt{approxSetCov}(X, \mathcal{F})
+\)
+cuando en la línea 4 el desempate ocurre por escoger la palabra que aparece primero
+en el diccionario.
+
+\subsection{Implementación en tiempo cuadrático}\begin{enumerate}
+	\item Implemente (definiendo todas las estructuras de datos manualmente) el
+		algoritmo \texttt{appoxSetCov} de modo que su complejidad temporal
+		sea
+		\[
+			O
+			\left(
+				\sum_{S \in \mathcal{F}} \#\, S
+			\right).
+		\]
+
+	\item Explique por qué en general
+		\[
+			O
+			\left(
+				\sum_{S \in \mathcal{F}} \#\, S
+			\right)
+			=
+			O(n^2)
+		\]
+		donde $n= \#\, X$.
+\end{enumerate}
 \end{document}
