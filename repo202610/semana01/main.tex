@@ -1,0 +1,335 @@
+\input{preamble}
+
+\begin{document}
+
+\frame{\titlepage}
+
+%
+
+\begin{frame}{Información básica}
+
+\begin{itemize}
+    \item \textbf{Instructor:} Daniel Barrero $<$dr.barrero2562$>$ \pause
+    \begin{itemize}
+        \item \textbf{Horas de atención:} miércoles o viernes 11 AM (agendar previamente por e-mail).
+        \item \textbf{Lugar de atención:} ML-763
+    \end{itemize}
+    \item[ ]\pause
+    \item \textbf{Monitor:} Yefran Céspedes $<$y.cespedes$>$.
+\end{itemize}
+    
+\end{frame}
+
+%
+
+\begin{frame}{Información básica}
+
+\textbf{Calificación del curso} \pause
+
+\begin{itemize}
+    \item Parcial 1 [25\%]
+    \item Parcial 2 [25\%]
+    \item Parcial 3 [25\%] \pause
+    \item Proyecto (3 entregas) [15\%] \pause
+    \item Tareas y quices [10\%]
+\end{itemize}
+
+Los proyectos se desarrollan en parejas, las demás actividades son individuales. \\
+
+\bigskip
+
+\textbf{Política de aproximación de notas} \pause
+
+\begin{itemize}
+    \item Para aprobar el curso se debe obtener una nota sin aproximar de 3.0 o superior. \pause
+    \item La mejor nota del curso será aproximada a 5.0 \pause
+    \item No se hace aproximación de las demás notas finales.
+\end{itemize}
+    
+\end{frame}
+
+%
+
+\begin{frame}{Bibliografía}
+\begin{itemize}
+    \item Cormen et al. \textit{Introduction to algorithms}. MIT Press, 2009.
+    \item Bohórquez, Cardoso. \textit{Análisis de algoritmos}. Universidad de los Andes, 1992.
+\end{itemize}\pause
+
+\bigskip
+
+\textbf{Otras referencias}
+
+\begin{itemize}
+    \item Brassard, Bratley. \textit{Fundamentals of algorithmics}. Prentice-Hall, 1996.
+    \item Kocay, Kreher. \textit{Graphs, Algorithms, and Optimization}. CRC Press, 2017.
+    \item Bellman, Dreyfus. \textit{Applied Dynamic Programming}. Princeton University Press, 1962.
+    \item Aho, Hopcroft, Ullman. \textit{The Design and Analysis of Computer Algorithms}. Addison-Wesley, 1974.
+\end{itemize}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	Consider the task of computing the determinant of a square matrix.
+	\begin{exercise}
+		Compute
+		\(
+			\mathrm{det}(A)
+		\)
+		where
+		\[
+			A=
+			\left(
+				\begin{array}{ccc}
+					3 & 1 & -2\\
+					2 & 2 & 2\\
+					5 & 0 & -1
+				\end{array}
+			\right)
+		\]
+	\end{exercise}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	\textbf{Solution 1.} Apply the definition.
+
+	\[
+		\left|
+		\begin{array}{ccc}
+			3 & 1 & -2\\
+			2 & 2 & 2\\
+			5 & 0 & -1
+		\end{array}
+		\right| =
+		3
+		\left|
+		\begin{array}{cc}
+			2 & 2\\
+			0 & -1
+		\end{array}
+		\right| -
+		1
+		\left|
+		\begin{array}{cc}
+			2 & 2\\
+			5 & -1
+		\end{array}
+		\right| +
+		(-2)
+		\left|
+		\begin{array}{cc}
+			2 & 2\\
+			5 & -1
+		\end{array}
+		\right|
+	\]
+	\[
+		= 26
+	\]
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	\textbf{Solution 1.} Apply the definition.
+
+	\lstinputlisting[language=Java, firstline=10, lastline=26]{Aula01.java}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
+
+	\begin{theorem}
+		If $A$ is a square matrix with non-zero diagonal entries, there
+		exist a lower-triangular matrix $L$ and an upper-triangular matrix
+		$U$ such that
+		\[
+			LA = U.
+		\]
+		Therefore,
+		\[
+			\mathrm{det}(A) = \mathrm{det}(U)/\mathrm{det}(L).
+		\]
+	\end{theorem}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
+	\[
+		\left(
+			\begin{array}{ccc}
+				1 & 0 & 0\\
+				0 & 1 & 0\\
+				0 & 0 & 1
+			\end{array}
+		\right.
+		\left|
+			\begin{array}{ccc}
+				3 & 1 & -2\\
+				2 & 2 & 2\\
+				5 & 0 & -1
+			\end{array}
+		\right)
+		%
+		\mapsto
+		%
+		\left(
+			\begin{array}{ccc}
+				1 & 0 & 0\\
+				-2 & 3 & 0\\
+				0 & 0 & 1
+			\end{array}
+		\right.
+		\left|
+			\begin{array}{ccc}
+				3 & 1 & -2\\
+				0 & 4 & 10\\
+				5 & 0 & -1
+			\end{array}
+		\right)
+		%
+		\mapsto
+	\]
+	% nextequationline
+	\[
+		\left(
+			\begin{array}{ccc}
+				1 & 0 & 0\\
+				-2 & 3 & 0\\
+				-5 & 0 & 3
+			\end{array}
+		\right.
+		\left|
+			\begin{array}{ccc}
+				3 & 1 & -2\\
+				0 & 4 & 10\\
+				0 & -5 & 7
+			\end{array}
+		\right)
+		%
+		\mapsto
+		%
+		\left(
+			\begin{array}{ccc}
+				1 & 0 & 0\\
+				-2 & 3 & 0\\
+				-30 & 15 & 12
+			\end{array}
+		\right.
+		\left|
+			\begin{array}{ccc}
+				3 & 1 & -2\\
+				0 & 4 & 10\\
+				0 & 0 & 78
+			\end{array}
+		\right)
+	\]
+	% nextequationline
+	\[
+		=
+		\left(
+		\right.
+		L
+		\left|
+		U
+		\right)
+	\]
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
+
+	\lstinputlisting[language=Java, firstline=77, lastline=91]{Aula01.java}
+
+	\textit{Continue on the next page\ldots}
+\end{frame}
+
+%
+
+\begin{frame}{Why Algorithmics? - Determinant example}
+	\lstinputlisting[language=Java, firstline=93, lastline=105]{Aula01.java}
+
+	\textbf{WARNING!} This algorithm can go wrong (i.e. return a number that is
+	not the determinant).
+	\begin{itemize}
+		\item Exercise 1. Find three matrices for which the above given \texttt{gjDet}
+			fails to compute the determinant.
+		\item Exercise 2. Fix \texttt{gjDet} so that it always works.
+	\end{itemize}
+\end{frame}
+
+%
+
+\begin{frame}{Why Algorithmics? - Determinant example}
+	Solution 1 has $O(n!)$ time complexity, and Solution 2 $O(n^3)$. Which one
+	is best?
+
+	\begin{itemize}
+		\item Solution 2 is best \emph{eventually}.
+	\end{itemize}
+
+	\begin{eqnarray*}
+		(n!)_{n=1}^{7} = 1, 2, 6, 24, 120, 720, 5040\\
+		(n^3)_{n=1}^{7} = 1, 8, 27, 64, 125, 216, 343
+	\end{eqnarray*}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Sorting}
+	Recall the \emph{insertion sort} algorithm:\pause
+	\lstinputlisting[language=Java, firstline=222, lastline=239]{Aula01.java}
+	Looking at the nested loops, we see that insertion sort is
+	\(
+		O(n^2)
+	\)
+	in the worst case.
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Sorting}
+	On the other hand, we also have the well-known
+	\emph{mergesort} algorithm:\pause
+	\lstinputlisting[language=Java, firstline=161, lastline=181]{Aula01.java}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Sorting}
+	Its time complexity satisfies the recurrence relation
+	\[
+		\left\{
+			\begin{array}{l}
+				t(1) = 1\\
+				t(n) = t(\lfloor n/2 \rfloor) + t(\lceil n/2 \rceil)
+				+ cn,\ n > 1.
+			\end{array}
+		\right.
+	\]
+	This gives
+	\[
+		t(n) \in O(n\log n).
+	\]
+
+	\begin{example}
+		For an array of size $n= 1000$, 
+		\begin{itemize}
+			\item Insertion sort would take $\approx 1000000$ time units
+				in the worst case.
+			\item Mergesort would take $\approx 3000$ time units.
+		\end{itemize}
+	\end{example}
+\end{frame}
+
+% nextframe
+\begin{frame}{Divide and Conquer}
+	\centering
+	\includegraphics[width=0.3\textwidth]{strategist.png}
+
+	\bigskip
+	\begin{quote}
+		\emph{Unity is strength. Divide your enemy, and conquer them.}
+	\end{quote}
+\end{frame}
+\end{document}
