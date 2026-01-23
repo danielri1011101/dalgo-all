@@ -136,27 +136,10 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 	\lstinputlisting[language=Java, firstline=10, lastline=26]{Aula01.java}
 \end{frame}
 
-% nextframe
-\begin{frame}{Why algorithmics? - Determinant example}
-	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
-
-	\begin{theorem}
-		If $A$ is a square matrix with non-zero diagonal entries, there
-		exist a lower-triangular matrix $L$ and an upper-triangular matrix
-		$U$ such that
-		\[
-			LA = U.
-		\]
-		Therefore,
-		\[
-			\mathrm{det}(A) = \mathrm{det}(U)/\mathrm{det}(L).
-		\]
-	\end{theorem}
-\end{frame}
 
 % nextframe
 \begin{frame}{Why algorithmics? - Determinant example}
-	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
+	\textbf{Solution 2.} Apply Gauss-Jordan elimination.\pause
 	\[
 		\left(
 			\begin{array}{ccc}
@@ -188,7 +171,7 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 				0 & 4 & 10\\
 				5 & 0 & -1
 			\end{array}
-		\right)
+		\right)\pause
 		%
 		\mapsto
 	\]
@@ -207,7 +190,7 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 				0 & 4 & 10\\
 				0 & -5 & 7
 			\end{array}
-		\right)
+		\right)\pause
 		%
 		\mapsto
 		%
@@ -242,6 +225,24 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 \begin{frame}{Why algorithmics? - Determinant example}
 	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
 
+	\begin{theorem}
+		If $A$ is a square matrix with non-zero diagonal entries, there
+		exist a lower-triangular matrix $L$ and an upper-triangular matrix
+		$U$ such that
+		\[
+			LA = U.
+		\]
+		Therefore,
+		\[
+			\mathrm{det}(A) = \mathrm{det}(U)/\mathrm{det}(L).
+		\]
+	\end{theorem}
+\end{frame}
+
+% nextframe
+\begin{frame}{Why algorithmics? - Determinant example}
+	\textbf{Solution 2.} Apply Gauss-Jordan elimination.
+
 	\lstinputlisting[language=Java, firstline=77, lastline=91]{Aula01.java}
 
 	\textit{Continue on the next page\ldots}
@@ -250,7 +251,7 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 %
 
 \begin{frame}{Why Algorithmics? - Determinant example}
-	\lstinputlisting[language=Java, firstline=93, lastline=105]{Aula01.java}
+	\lstinputlisting[language=Java, firstline=93, lastline=105]{Aula01.java}\pause
 
 	\textbf{WARNING!} This algorithm can go wrong (i.e. return a number that is
 	not the determinant).
@@ -265,7 +266,7 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 
 \begin{frame}{Why Algorithmics? - Determinant example}
 	Solution 1 has $O(n!)$ time complexity, and Solution 2 $O(n^3)$. Which one
-	is best?
+	is best?\pause
 
 	\begin{itemize}
 		\item Solution 2 is best \emph{eventually}.
@@ -310,7 +311,7 @@ Los proyectos se desarrollan en parejas, las demás actividades son individuales
 	This gives
 	\[
 		t(n) \in O(n\log n).
-	\]
+	\]\pause
 
 	\begin{example}
 		For an array of size $n= 1000$, 
