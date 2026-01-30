@@ -1,0 +1,164 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\section{Matrices de Monge} Una matriz
+\(
+	A \in \mathbb{Z}^{m\times n}
+\)
+es una \emph{matriz de Monge} si dados índices $i, j, k, l$ tales que
+\[
+	\begin{array}{c}
+		0 \leq i < k \leq m-1\\
+		0 \leq j < l \leq n-1 
+	\end{array}
+\]
+
+se cumple que
+\[
+	A^i_j + A^k_l \leq A^i_l + A^k_j.
+\]
+
+\textbf{Ejemplo.} La siguiente es una matriz de Monge $7\times 5$.
+\[
+	\left[
+		\begin{array}{ccccc}
+			10 & 17 & 13 & 28 & 23\\
+			17 & 22 & 16 & 29 & 23\\
+			24 & 28 & 22 & 34 & 24\\
+			11 & 13 & 6 & 17 & 7\\
+			45 & 44 & 32 & 37 & 23\\
+			36 & 33 & 19 & 21 & 6\\
+			75 & 66 & 51 & 53 & 34
+		\end{array}
+	\right]
+\]
+
+\subsection*{Teorema} Utilice la siguiente propiedad de las matrices
+de Monge para resolver este ejercicio:
+\begin{quote}
+	\emph{La matriz $A$ es de Monge si y sólo si para cualesquiera índices $i,j$
+		se cumple que}
+	\[
+		A^i_j + A^{i+1}_{j+1} \leq A^{i}_{j+1} + A^{i+1}_j.
+	\]
+\end{quote}
+
+\subsection{Algoritmo iterativo} Escriba un algoritmo iterativo para determinar si
+una matriz de números enteros es de Monge o no. Determine su complejidad temporal.
+
+\subsection{Algoritmo de dividir y conquistar} Escriba un algoritmo de dividir y
+conquistar para determinar si una matriz de números enteros es de Monge o no.
+Plantee una ecuación de recurrencia que describa su complejidad temporal asumiendo
+que se trata de una matriz $n\times n$ donde $n$ es una potencia de 2.
+
+% nextsection
+\section{Elemento mayoritario} Si \texttt{A} es un arreglo de elementos comparables
+(números, caracteres, strings, \ldots) decimos que contiene un
+\emph{elemento mayoritario} \texttt{a} si dicho elemento ocurre más de $n/2$ veces
+donde $n$ es la longitud de \texttt{A}.
+
+\subsection{Algoritmo} Escriba un algoritmo de dividir y conquistar que determine
+si un arreglo contiene o no un elemento mayoritario. Aunque puede asumir que se
+trata de un arreglo de números enteros, sólamente puede utilizar el operador
+\texttt{==} para comparar elementos.
+
+\subsection{Complejidad} Plantee una ecuación de recurrencia que determine la
+complejidad temporal de su solución.
+
+% nextsection
+\section{Multiplicación rápida de enteros}
+Para este problema consideramos que el tamaño de un entero $N$ es la longitud de su
+expansión decimal, y esto lo denotamos con la letra minúscula correspondiente:
+\[
+	n= \textsf{size}(N)= \lfloor\log_{10} N\rfloor + 1.
+\]
+
+Por ejemplo
+\[
+	\begin{array}{l}
+		N= 0 \Rightarrow n= 1\\
+		N= 7 \Rightarrow n= 1\\
+		N= 10 \Rightarrow n= 2\\
+		N= 43 \Rightarrow n= 2\\
+		N= 4310 \Rightarrow n= 4
+	\end{array}
+\]
+Excluiremos los enteros negativos en este ejercicio. Es decir, si ejecutamos
+\texttt{fastMult(m,n)} podemos asumir que $\mathtt{m}, \mathtt{n} \geq 0$.
+
+\subsection*{Descripción del problema} Suponga que los enteros $N, M$ tienen la misma
+longitud $n$. Entonces
+\[
+	NM = (10^{\lceil n/2 \rceil}X + Y)(10^{\lceil n/2 \rceil}W + Z)
+\]
+donde
+\[
+	\left\{
+		\begin{array}{c}
+			x = w = \mkfloor{n/2}\\
+			y, z\leq \mkceil{n/2} 
+		\end{array}
+	\right.
+\]
+
+\bigskip
+Desarrollando la expresión obtenemos que
+\[
+	NM =
+	10^{2\mkceil{n/2}}XW + 10^{\mkceil{n/2}}(XZ + YW) + YZ.
+\]
+
+Entonces a simple vista calcular la multiplicación $NM$ nos requiere calcular cuatro
+multiplicaciones de tamaño $\approx n/2$:
+\[
+	XW,\ XZ,\ YW,\ YZ.
+\]
+Dado que pensamos a un entero como la lista de sus dígitos, no nos preocupamos por
+la complejidad de multiplicar por potencias de 10, ya que esto lo pensamos como
+simples \emph{shifts} o corrimientos a la izquierda, agregando ceros al final de la
+lista.
+
+\subsection*{Idea del algoritmo} En vez de cuatro multiplicaciones, podemos usar las
+siguientes tres:
+\[
+	P= XW,\ Q= YZ,\ R= (X+Y)(W+Z).
+\]
+
+De este modo obtenemos
+
+\[
+	NM =
+	10^{2\mkceil{n/2}}P + 10^{\mkceil{n/2}}(R - P - Q) + Q.
+\]
+Recuerde que las operaciones de suma, resta y multiplicar por potencias de 10 se
+consideran de complejidad despreciable con respecto a la de multiplicar.
+
+\subsection{Estructura de datos} Implemente los enteros como listas enlazadas de
+dígitos 0, 1, \ldots, 9. Puede usar listas \emph{doblemente enlazadas} si lo desea,
+es decir puede guardar la información tanto de la cabeza como de la cola de la
+lista junto con apuntadores de sucesor y predecesor. Defina las operaciones de suma,
+resta y \emph{shift} sobre ellos. Para evitar usar números negativos, puede usar
+una \emph{resta truncada}:
+\[
+	\texttt{subtract(m,n)}=
+	\left\{
+		\begin{array}{cc}
+			\texttt{m-n} & \mbox{si \texttt{m} $\geq$ \texttt{n}}\\
+			0 & \mbox{de otro modo.}
+		\end{array}
+	\right.
+\]
+
+\subsection{Algoritmo sin mejorar} Implemente mediante dividir y conquistar el
+algoritmo que usa cuatro multiplicaciones y plantee una ecuación de recurrencia
+que describa la complejidad temporal de este. Puede asumir que la complejidad de
+shift, suma y resta es $O(n)$ donde $n$ es la longitud del número.
+
+\subsection{Algoritmo rápido} Implemente mediante dividir y conquistar el
+algoritmo mejorado que usa \emph{tres} multiplicaciones y plantee una ecuación de
+recurrencia que describa la complejidad temporal de este. Puede asumir que la
+complejidad de shift, suma y resta es $O(n)$ donde $n$ es la longitud del número.
+
+\end{document}
