@@ -79,15 +79,20 @@ public class Aula07 {
 		int n= g.adjList.length;
 		int[] ps= new int[n];
 		Arrays.fill(ps, -1);
-		return dfs(g, ps, s);
+		ps[s]= s;
+		dfs(g, ps, s);
+		return ps;
 	}
 
-	static int[] dfs(LisGraph g, int[] ps, int s) {
+	static void dfs(LisGraph g, int[] ps, int s) {
 		LList[] ls= g.adjList;
-		int n= ls.length;
 		LNode current= ls[s].head;
 		int t= current.ntag;
-		while (ps[t] >= 0 && current.succ != null) {
+		while (current.succ != null) {
+			if (ps[t] < 0) {
+				ps[t]= s;
+				dfs(g, ps, t);
+			}
 			current= current.succ;
 			t= current.ntag;
 		}
@@ -95,7 +100,6 @@ public class Aula07 {
 			ps[t]= s;
 			dfs(g, ps, t);
 		}
-		return ps;
 	}
 
 	static void printLisGraph(LisGraph g) {
