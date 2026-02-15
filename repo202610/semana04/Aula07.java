@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import dutils.DalgoUtilities.*;
 
 public class Aula07 {
 
@@ -102,6 +103,42 @@ public class Aula07 {
 		}
 	}
 
+	static int[] bfSearch(LisGraph g, int s) {
+		int n= g.adjList.length;
+		int[] ps= new int[n];
+		Arrays.fill(ps, -1);
+		ps[s]= s;
+		bfs(g, ps, s);
+		return ps;
+	}
+
+	static void bfs(LisGraph g, int[] ps, int s) {
+		QNode nd= new QNode(s);
+		Queue q= new Queue(nd);
+		while (!q.isEmpty()) {
+			QNode cqnd= q.dequeue();
+			int t= cqnd.ntag;
+			LList nbs= g.adjList[t];
+			LNode current= nbs.head;
+			int v= current.ntag;
+			while (current.succ != null) {
+				if (ps[v] < 0) {
+					QNode x= new QNode(v);
+					q.enqueue(x);
+					ps[v]= t;
+				}
+				current= current.succ;
+				v= current.ntag; 
+			}
+			v= current.ntag;
+			if (ps[v] < 0) {
+				QNode x= new QNode(v);
+				q.enqueue(x);
+				ps[v]= t;
+			}
+		}
+	}
+
 	static void printLisGraph(LisGraph g) {
 		LList[] ls= g.adjList;
 		int n= ls.length;
@@ -158,6 +195,9 @@ public class Aula07 {
 
 		String dfTree= Arrays.toString(dfSearch(g, 0));
 		System.out.println(dfTree);
+
+		String bfTree= Arrays.toString(bfSearch(g, 0));
+		System.out.println(bfTree);
 
 		// SIn-SOut
 		System.out.println("Hola Dalgo!");
