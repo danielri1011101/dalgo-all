@@ -1,0 +1,6 @@
+260219
+
+Kruskal:
+-- Initialize n singleton sets, one with each node of G.
+-- A "Set" d.s. as in java class is a subset of 2^[n] consisting of disjoint
+elements
