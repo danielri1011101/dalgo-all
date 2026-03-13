@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=medsquare] (0) at (-2.5, 4.25) {$1$};
+		\node [style=medsquare] (2) at (-0.5, 4.25) {$9$};
+		\node [style=new style 0] (3) at (-1.5, 4.25) {};
+		\node [style=medsquare] (4) at (-4.5, 4.25) {$1$};
+		\node [style=new style 0] (5) at (-3.5, 4.25) {};
+		\node [style=medsquare] (6) at (1.5, 4.25) {$9$};
+		\node [style=new style 0] (7) at (0.5, 4.25) {};
+		\node [style=medsquare] (8) at (3.5, 4.25) {$2$};
+		\node [style=new style 0] (9) at (2.5, 4.25) {};
+		\node [style=medsquare] (10) at (5.5, 4.25) {$-5$};
+		\node [style=new style 0] (11) at (4.5, 4.25) {};
+		\node [style=medsquare] (12) at (7.5, 4.25) {$-5$};
+		\node [style=new style 0] (13) at (6.5, 4.25) {};
+	\end{pgfonlayer}
+\end{tikzpicture}

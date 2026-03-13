@@ -1,0 +1,131 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\section{Puntos fijos de un arreglo}
+Sea $A$ un arreglo de longitud $n$ cuyas entradas son números enteros y tal que
+\[
+	A[0] < A[1] < \cdots < A[n-1].
+\]
+Queremos resolver el problema de encontrar un índice $i$ tal que $A[i]= i$, si es
+que existe.
+
+\subsection{[5 Pts]} Describa las entradas y salidas del problema.
+
+\begin{tabular}{|| l| l| l| l||}
+	\hline
+	{\bf E/S} & {\bf Nombre} & {\bf Tipo} & {\bf Descripción}\\
+	\hline
+	        \hspace{1cm} & \hspace{3cm} & \hspace{2cm} & \hspace{4cm} \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+		  \hline
+\end{tabular}
+
+\subsection{[8 Pts]} Escriba un algoritmo recursivo que resuelva el problema en
+tiempo $O(\log n)$.
+
+\subsection{[7 Pts]} Defina una ecuación de recurrencia que exprese la complejidad
+temporal de su solución y resuélvala.
+
+\newpage
+\section{Juego de carnaval}
+Suponga que en la galería de tiro de un carnaval hay dos opciones para ganar puntos:
+\begin{description}
+	\item [Opción 1] Golpear un solo blanco, obteniendo el valor inscrito.
+		\[
+			\begin{array}{c}
+				\tikzfig{hitone}\\
+				\mbox{\emph{Puntaje $+2$}}
+			\end{array}
+		\]
+		
+	\item [Opción 2] Golpear el disco que conecta dos consecutivos, obteniendo
+		el producto de los valores inscritos.
+		\[
+			\begin{array}{c}
+				\tikzfig{hittwo}\\ 
+				\mbox{\emph{Puntaje $+18$}}
+			\end{array}
+		\]
+	\item [Tenga en cuenta] El puntaje inicial es cero y pueden haber blancos
+		con puntajes negativos. Está permitido no golpear un blanco para
+		evitar perder puntos.
+\end{description}
+
+\newpage
+\subsection{[10 Pts]} Describa las entradas y salidas del problema.
+
+\begin{tabular}{|| l| l| l| l||}
+	\hline
+	{\bf E/S} & {\bf Nombre} & {\bf Tipo} & {\bf Descripción}\\
+	\hline
+	        \hspace{1cm} & \hspace{3cm} & \hspace{2cm} & \hspace{4cm} \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+		  \hline
+\end{tabular}
+
+\subsection{[20 Pts]} Defina una ecuación de recurrencia para $L(k)$, el máximo
+puntaje que se puede obtener jugando con los blancos $0, \ldots, k-1$.
+
+\subsection{[10 Pts]} Dibujar el grafo de necesidades asociado con esta ecuación.
+Explique qué representan los vértices y qué representan las aristas del grafo.
+
+\subsection{[20 Pts]} Desarrolle un algoritmo de programación dinámica para
+resolver este problema.
+
+\newpage
+\section{Divisibilidad}
+Considere el grafo dirigido $G_N$ cuyos nodos son los enteros \emph{positivos}
+menores o iguales a $N$ y donde la arista $a \to b$ pertenece al grafo si y sólo
+si $b= ap$ donde $p$ es un número primo. Abajo encuentra un dibujo de $G_{10}$.
+
+\ctikzfig{div10}
+
+Dado $G_N$ y dos enteros positivos distintos $x, y$ menores o iguales a $N$,
+queremos determinar si alguno es múltiplo del otro.
+
+\subsection{[5 Pts]} Describa las entradas y salidas del problema.
+
+\begin{tabular}{|| l| l| l| l||}
+	\hline
+	{\bf E/S} & {\bf Nombre} & {\bf Tipo} & {\bf Descripción}\\
+	\hline
+	        \hspace{1cm} & \hspace{3cm} & \hspace{2cm} & \hspace{4cm} \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+	          &          &          & \\
+		  \hline
+\end{tabular}
+
+\subsection{[10 Pts]} Determine de qué problema general de grafos este ejercicio
+es una instancia particular.
+
+\subsection{[10 Pts]} Escriba un algoritmo para resolver el problema.
+
+\end{document}
