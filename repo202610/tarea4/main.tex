@@ -1,0 +1,142 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\section{Teorema de Cook-Levin}
+\subsection{Máquinas de Turing} Defina una máquina de Turing
+\(
+	M_\texttt{pow}= (K, \Gamma, \delta, s, h)
+\)
+
+Para decidir el lenguaje
+\[
+	L_\texttt{pow}= \{\texttt{0}^{2^n}\} \subset \{\texttt{0}\}^*
+	.
+\]
+
+Use
+\(
+	\Gamma=
+	\{
+		\mbox{``\texttt{No}'', \texttt{0, x, }$\sqcup$,\ ``\texttt{Yes}''}
+	\}
+\)
+para resolver este problema.
+
+\subsection{Funciones booleanas} La función de transición de una máquina de Turing
+tiene tipo
+\[
+	\delta : K \times \Gamma \to K \times \Gamma \times
+			\{
+				\texttt{L, R}
+			\}
+			.
+\]
+
+Sea 
+\(
+	\mathbf{F}_\delta
+\)
+su codificación como función entre bit-strings. Tiene tipo 
+\[
+	\mathbf{F}_\delta :
+		\langle
+			K \times \Gamma
+		\rangle
+			\to
+		\langle
+			K \times \Gamma \times
+				\{
+					\texttt{L, R}
+				\}
+		\rangle
+		.
+\]
+
+\begin{enumerate}
+		\item Sea
+		\(
+			F_\delta^i :
+				\langle
+					K \times \Gamma
+				\rangle
+					\to
+				\{
+					0, 1
+				\}
+		\)
+		la $i-$ésima componente de
+		\(
+			\mathbf{F}_\delta
+		\)
+		de su solución al ejercicio 1.1. Escoja dos valores de $i$ y
+		calcule los circuitos booleanos equivalentes a estas
+		\(
+			F_\delta^i
+		\).
+\end{enumerate}
+
+%--
+
+\section{Reducciones}
+
+\subsection{Reducir a decisión}
+\begin{enumerate}
+	\item Demuestre que
+		\(
+			\llbracket
+			\texttt{Cov}
+			\rrbracket
+			%
+			\leq_P
+			%
+			\texttt{CovD}
+		\).
+	\item Demuestre que
+		\(
+			\llbracket
+			\texttt{Ham}
+			\rrbracket
+			%
+			\leq_P
+			%
+			\texttt{HamD}
+		\).
+	\item Demuestre que
+		\(
+			\llbracket
+			\texttt{TSP}
+			\rrbracket
+			%
+			\leq_P
+			%
+			\texttt{TSPD}
+		\).
+\end{enumerate}
+
+\subsection{NP-hardness de TSP}
+\begin{enumerate}
+	\item[] Demuestre que \texttt{HamD} $\leq_P$ \texttt{TSPD}.
+\end{enumerate}
+
+%--
+
+\section{Longest Simple Path}
+\subsection{} Demuestre que \texttt{LSPD} es $NP-$completo.
+\begin{quote}
+	\emph{\textbf{Ayuda:} Para hardness puede demostrar que \mbox{\texttt{HamD}
+	$\leq_P$ \texttt{LSPD}}.}
+\end{quote}
+
+\subsection{} Demuestre que
+	\(
+		\llbracket
+		\texttt{LSP}
+		\rrbracket
+		%
+		\leq_P
+		%
+		\texttt{LSPD}
+	\).
+\end{document}
