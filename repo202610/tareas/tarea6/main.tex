@@ -1,0 +1,69 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+%firstsection
+\section{Obtener muestras aleatorias}
+
+\subsection{Muestra aleatoria en un rango de números} A partir del método
+\texttt{randomBit()} que retorna 0 o 1 con igual probabilidad, implemente el
+método
+
+\begin{lstlisting}
+int randomInt(int a, int b) // Assume a < b
+\end{lstlisting}
+
+que retorna un entero $a \leq k \leq b$ con probabilidad $1/(b-a)$.
+
+\subsection{Generadores pseudoaleatorios} Sea $M= pq$ donde
+$p= 113$ y $q= 199$.
+
+\begin{enumerate}
+	\item Implemente la función
+		
+	\begin{lstlisting}
+	String pseudorandomBits(int seed, int N)
+	\end{lstlisting}
+		
+	Que retorna como string los primeros N bits de la secuencia
+	$(y_n)_{n \in \mathbb{N}}$ dada por el generador
+		\[
+			\left\{
+				\begin{array}{l}
+					f(x)= x^2 \mod M\\
+					g(x)= x \mod 2\\
+					x_0= \mathtt{seed}\\
+					x_{n+1}= f(x_n)\\
+					y_n= g(x_n).
+				\end{array}
+			\right.
+		\]
+	\item Escriba el resultado de ejecutar esta función con \texttt{seed}
+		igual al número dado por los últimos 4 dígitos de su código de
+		estudiante, y con $N= 64$.
+	\item Haga lo mismo pero con \texttt{seed} igual a 2027.
+\end{enumerate}
+
+%nextsection
+\section{Correctitud de \texttt{Randomize-in-place}}
+
+\begin{lstlisting}
+void randomizeInPlace(int[] A) {
+	int n= A.length;
+	for (int k= 0; k < n; k++) {
+		int t= random(k, n) // random integer between k and n-1
+		swap(A[k], A[t]);
+	}
+}
+\end{lstlisting}
+
+Asumiendo que el arreglo \texttt{A} no tiene elementos repetidos, 
+para el algoritmo arriba demuestre por inducción en $k= 0, 1, \ldots, n-1$
+que después de la ejecución del \texttt{for} con índice $k$, el sub-arreglo
+\texttt{A[0..k]} (incluyendo \texttt{A[k]}) puede tener cualquier
+$k-$permutación de \texttt{A} con la misma probabilidad, a saber
+\(
+	(n-(k+1))!/n!
+\)
+\end{document}
