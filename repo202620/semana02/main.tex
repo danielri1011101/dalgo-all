@@ -1,0 +1,474 @@
+\documentclass{beamer}
+
+\input{preamble}
+
+\title{Diseño de algoritmos \\ ISIS2112}
+\author{Daniel R. Barrero R.}
+\institute{Universidad de los Andes}
+
+\begin{document}
+\frame{\titlepage}
+
+
+%% Divide and conquer
+\begin{frame}{Divide and conquer}
+	\centering
+	\includegraphics[width=0.3\textwidth]{strategist.png}
+	
+	\bigskip
+	``\emph{Unity is strength. Divide your enemy, and conquer them.}''
+\end{frame}
+%
+%nextframe
+\begin{frame}{D \& C - fast exponentiation}
+	\lstinputlisting[language=Java, firstline=8, lastline=18]{Aula06.java}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	$t(n) :=$ number of multiplications \texttt{'*'}. Then
+	\[
+		\begin{cases}
+			t(0)= 0\\
+			t(n)= t(n/2) + 1,\ n > 0\ \text{even}\\
+			t(n)= t(n-1) + 1,\ n > 0\ \text{odd}.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Notice that
+	\[
+		\lfloor n/2 \rfloor =
+		\begin{cases}
+			n/2,\ n \text{ even}\\
+			(n-1)/2,\ n \text{ odd}.
+		\end{cases}
+	\]
+	Then if $n$ is odd
+	\[
+		\begin{array}{c}
+			t(n) = \left( t\left( \frac{n-1}{2} \right) + 1 \right) + 1\\
+			= t(\lfloor n/2 \rfloor) + 2.
+		\end{array}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Then $t(n) \leq \tau(n)$ where
+	\[
+		\begin{cases}
+			\tau(0)= 0\\
+			\tau(n)= \tau(\lfloor n/2 \rfloor) + 2,\ n > 0.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\begin{itemize}
+		\item Solution of the recurrence
+		\item It will NOT appear in exams.
+	\end{itemize}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Let $T(m)= \tau(2^m)$. Then
+	\[
+		\begin{cases}
+			T(0)= 2\\
+			T(m)= T(m-1) + 2,\ m > 0.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Apply the \emph{homogenization trick}. If $m > 1$ then
+	\[
+		\begin{array}{c}
+			T(m) - T(m-1) = 2\\
+			T(m-1) - T(m-2) = 2.
+		\end{array}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Then
+	\[
+		\begin{cases}
+			T(0)= 2,\ T(1) = 4\\
+			T(m) - 2T(m-1) + T(m-2)= 0,\ m > 1.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	The characteristic equation is $(x - 1)^2= 0$, so the solution is
+	\[
+		T(m) = u1^m + vm1^m
+	\]
+	where $u$ and $v$ satisfy
+	\[
+		\begin{cases}
+			u = 2\\
+			u + v = 4.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Then $T(m) = 2 + 2m$. Since $m = \log n$, we obtain
+	\[
+		\tau(n) = 2 + 2\log n
+	\]
+	$\Rightarrow t(n) \in O(\log n)$.
+\end{frame}
+\begin{frame}{D \& C - master theorem}
+	Let $t(n)$ be such that
+	\[
+		t(n) \leq at(\lceil n/b \rceil) + cn^k
+	\]
+	for $c \in \Rpos$, $a \in \Zpos$, $b \in \Zpos$, $k \in \NN$. Then
+	\[
+		t(n) \in
+		\begin{cases}
+			O(n^k)\ \ \text{if}\ a < b^k\\
+			O(n^k\log n)\ \ \text{if}\ a = b^k\\
+			O(n^{\log_b a})\ \ \text{if}\ a > b^k.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\begin{itemize}
+		\item Proof of master theorem
+		\item It will NOT appear in exams
+	\end{itemize}
+\end{frame}
+%
+%nextframe
+\begin{frame}{D \& C - Proof of master theorem}
+	\emph{Essential step:} compute the complexity of
+	\[
+		\begin{cases}\label{mtr} % Master theorem recurrence
+			t(1)= v_0\\
+			t(n)= at(\lceil n/b \rceil) + cn^k,\ n > 1.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Change of variable $T(m)= t(b^m)$:
+	\[
+		\begin{cases}\label{mtl} % Master theorem linear
+			T(0)= v_0\\
+			T(m)= aT(m-1) + c(b^k)^m,\ m > 0.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Homogenization trick for $m > 1$:
+	\[
+		\begin{cases}
+			T(m) - aT(m-1) = c(b^k)^m\\
+			b^kT(m-1) - ab^kT(m-2) = c(b^k)^m
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Subtract these equations and compute $T(1)$:
+	\[
+		\begin{cases}
+			T(0)= v_0,\ T(1)= av_0 + cb^k\\
+			T(m) - (a + b^k)T(m-1) + ab^kT(m-2)= 0,\ m > 1.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	Characteristic equation $(x - a)(x - b^k)= 0$, then the solution is of the form
+	\[
+		T(m) = ua^m + v(b^k)^m
+	\]
+	for $u$ and $v$, unless $a = b^k$, in which case
+	\[
+		T(m) = u(b^k)^m + vm(b^k)^m.
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	The result follows from noticing that $a^m = n^{\log_b a}$ and
+	$(b^k)^m = n^k$, and by considering the possible values of the limit
+	\[
+		\lim_{m \to \infty} \frac{a^m}{(b^k)^m}.
+	\]
+\end{frame}
+
+%% Dynamic programming
+\begin{frame}{Dynamic programming (DP)}
+	\centering
+	\includegraphics[width=0.4\textwidth]{tyler.png}
+
+	``\emph{Sometimes sub-problems overlap, believe me. In that case, we keep
+		track of the smaller solutions in a table.}''
+\end{frame}
+%
+%nextframe
+\begin{frame}{Dynamic programming (DP)}
+	\centering
+	\includegraphics[width=0.4\textwidth]{tyler.png}
+
+	``\emph{That's what we call
+		dynamic programming.}''
+\end{frame}
+%
+%nextframe
+% Binomial coefficients
+\begin{frame}{DP - Binomial coefficients}
+	\centering
+	\includegraphics[width=0.6\textwidth]{sele2014.png}
+	\hspace{0.5cm}
+	$\longleftarrow$
+	\hspace{0.5cm}
+	\includegraphics[width=0.15\textwidth]{lucho.png}
+\end{frame}
+
+%
+% No teams
+\begin{frame}{}
+	\centering
+	\begin{tikzpicture}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (3,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+	\end{tikzpicture}
+	\hspace{1cm}
+	\begin{tikzpicture}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue,
+			label=above:LD] {};
+	\end{tikzpicture}
+	\[
+		\binom{17}{11} =
+	\]
+\end{frame}
+%
+% Without new
+\begin{frame}{}
+	\centering
+	\begin{tikzpicture}
+		\colorlet{syellow}{yellow!60!orange}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+	\end{tikzpicture}
+	\hspace{1cm}
+	\begin{tikzpicture}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue,
+			label=above:LD] {};
+	\end{tikzpicture}
+	\[
+		\binom{17}{11} = \binom{16}{11} +
+	\]
+\end{frame}
+%
+% With new
+\begin{frame}{}
+	\centering
+	\begin{tikzpicture}
+		\colorlet{syellow}{yellow!60!orange}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,2) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,3) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (1,4) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (2,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (2,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,1) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (3,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,1) [circle, inner sep=0, minimum size=4mm, fill=blue] {};
+		\node at (4,2) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,3) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+		\node at (4,4) [circle, inner sep=0, minimum size=4mm, fill=syellow] {};
+	\end{tikzpicture}
+	\hspace{1cm}
+	\begin{tikzpicture}
+		\colorlet{syellow}{yellow!60!orange}
+		\node at (1,1) [circle, inner sep=0, minimum size=4mm, fill=syellow,
+			label=above:LD] {};
+	\end{tikzpicture}
+	\[
+		\binom{17}{11} = \binom{16}{11} + \binom{16}{10}
+	\]
+\end{frame}
+%
+% bbc - statement
+\begin{frame}{}
+	\begin{thm}[Pascal's identity]\label{pascid}
+		\[
+			\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}.
+		\]
+	\end{thm}
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+We could then implement the following naive algorithm:
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	\lstinputlisting[language=Java, firstline=24, lastline=32]{Aula07.java}
+\end{frame}
+%
+% bbc - complexity
+\begin{frame}{}
+	But\ldots \emph{how bad is it?}
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	\begin{defn}[Omega notation]
+		Let $f : \NN \to \Rpos$. We define
+		\[
+			\Omega(f)= \{\tau : \NN \to \Rpos | f \in O(\tau)\}.
+		\]
+	\end{defn}
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	Informally, $\Omega(f)$ consists of the functions
+	``Worse than $f$''.
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	To analyse $\tau(n)$ of \texttt{binCoef1}, count the number of
+	additions:
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	Let $S(n,k)$ be the number of additions \texttt{'+'} in
+	\texttt{binCoef1(n,k)}. Then
+	\[
+		\begin{cases}
+			S(n,k) = 0,\ k = 0 \lor k = n\\
+			S(n,k) = S(n-1,k) + S(n-1,k-1) + 1,\ 0 < k < n.
+		\end{cases}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	\[
+		\begin{cases}
+			S(n,k) = 0,\ k = 0 \lor k = n\\
+			S(n,k) = S(n-1,k) + S(n-1,k-1) + 1,\ 0 < k < n.
+		\end{cases}
+	\]
+	By induction,
+		\[
+			S(n,k) = \binom{n}{k} - 1.
+		\] 
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	We have
+	\[
+		\binom{n}{k} = \sum_{j= 0}^k \binom{k}{j} \binom{n-k}{k-j}.
+	\]\pause
+	Since a set with $k$ elements has $2^k$ subsets,
+	\[
+		\binom{n}{k} - 1 \geq 2^k - 1.
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	\[
+		\binom{n}{k} - 1 \geq 2^k - 1.
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	In the worst case, $k= \lfloor n/2 \rfloor$. Then 
+	\[
+		t_{\texttt{binCoef1}} \in \Omega(\sqrt{2}^n).
+	\]
+	Then $\tau(n)$ of \texttt{binCoef1} is \emph{worse than exponential}.
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	But if we ``just write down Pascal's triangle'', the
+	computation becomes much cheaper.
+	\[
+		\begin{array}{cccccc}
+			1 & & & & & \\
+			1 & 1 & & & & \\ 
+			1 & 2 & 1 & & & \\ 
+			1 & 3 & 3 & 1 & & \\ 
+			1 & 4 & 6 & 4 & 1 & \\ 
+			1 & 5 & 10 & 10 & 5 & 1\\
+			 & \cdots & & & & 
+		\end{array}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	\lstinputlisting[language=Java, firstline=8, lastline=22]{Aula07.java}
+\end{frame}
+%
+%nextframe
+\begin{frame}{}
+	\emph{What are the time and space complexities of} \texttt{binCoef2}?
+\end{frame}
+\end{document}
