@@ -1,0 +1,33 @@
+\section{Dar cambio en la tienda}
+Considere el problema de formar una cantidad de dinero $V$ usando monedas de
+denominaciones
+\( \mathbf{d}= d_1, \ldots, d_n  \) de las cuales hay cantidades
+\( \mathbf{q}= q_1, \ldots, q_n  \).
+El programa debe imprimir
+\begin{enumerate}
+	\item[Caso 1:] \texttt{IMPOSSIBLE} Si no es posible formar $V$ con las
+		monedas disponibles
+	\item[Caso 2:] La secuencia \texttt{k1} \texttt{k2} \ldots \texttt{kn}
+		de cantidades (posiblemente 0 para algunas monedas) que su programa
+		encuentra para formar el valor $V$. \textbf{Ejemplo:} Si $V= 30$,
+		$\mathbf{d}= 1, 5, 10, 25$ y $\mathbf{q}= 20, 0, 5, 5$ Entonces se
+		imprime
+		\begin{itemize}
+			\item[] \texttt{0 0 3 0}.
+		\end{itemize}
+		La solución debe ser \textbf{óptima} en el sentido de que no hay
+		soluciones que usen menos monedas.
+\end{enumerate}
+\[
+	\begin{array}{l}
+		\mbox{Ejemplo 1:}\\
+		\mathbf{d}= 15, 37, 162, 170, 177, 184, 185, 192\\ 
+		\mathbf{q}= 20, 20, 19,  18,  19,  11,  10,  20\\
+		 \\
+		\mbox{Ejemplo 2:}\\
+		\mathbf{d}= 7,  68, 98, 110, 127, 140, 142, 162\\ 
+		\mathbf{q}= 10, 14, 19, 17,  12,  12,  16,  18
+	\end{array}
+\]
+Ejemplos de valores problema:
+\[ V= 520, 795, 156, 269, 327, 592, 413, 850, 329, 396.\]

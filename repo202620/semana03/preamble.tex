@@ -1,0 +1,34 @@
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Commands
+%% Number sets
+\newcommand{\NN}{\mathbf{N}} % Naturals
+\newcommand{\ZZ}{\mathbf{Z}} % Integers
+\newcommand{\Zpos}{\ZZ^+} % Positive integers
+\newcommand{\RR}{\mathbf{R}} % Reals
+\newcommand{\Rpos}{\RR^+} % Positive reals
+\newcommand{\Rmat}[2]{\RR^{{#1} \times {#2}}}
+
+% Environments: formal statements
+\theoremstyle{definition}
+\newtheorem{exl}{Example} % Examples
+\newtheorem{exr}{Exercise} % Exercises
+
+\definecolor{mygreen}{RGB}{10,120,60}
+
+% Display of code
+\lstdefinestyle{astyle}{
+	basicstyle=\tiny\ttfamily,
+	keywordstyle=\color{purple},
+	commentstyle=\color{mygreen},
+	stringstyle=\color{blue},
+	numberstyle=\tiny,
+	showstringspaces=false,
+	breaklines=true,
+	tabsize=4,
+}
+\lstset{style=astyle}

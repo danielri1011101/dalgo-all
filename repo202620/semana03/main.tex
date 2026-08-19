@@ -1,0 +1,151 @@
+\documentclass{beamer}
+\input{preamble}
+
+\title{Diseño y análisis de algoritmos\\ ISIS1105}
+\subtitle{Dynamic programming}
+\author{Daniel R. Barrero R.}
+\date{\today}
+\begin{document}
+\frame{\titlepage}
+%
+%nextframe
+\begin{frame}{Today's Class}
+	\begin{enumerate}
+		\item Subproblem graph
+		\item Topological sorting (graphs)
+		\item Dynamic programming: Bottom-up
+		\item The Knapsack problem
+		\item Dynamic programming: Top-down
+	\end{enumerate}
+\end{frame}
+%
+%nextframe
+\begin{frame}{Knapsack}
+	\includegraphics[width=0.25\textwidth]{pokeitems.png}
+	\hspace{2cm}
+	\includegraphics[width=0.25\textwidth]{pokebag.png}
+
+	\medskip
+	Items \( (w_1, v_1), \ldots, (w_n, v_n) \) \hspace{0.5cm} Capacity $W$
+\end{frame}
+%
+%nextframe
+\begin{frame}{Knapsack}
+	\includegraphics[width=0.25\textwidth]{pokeitems.png}
+	\hspace{2cm}
+	\includegraphics[width=0.25\textwidth]{pokebag.png}
+	\bigskip
+	\begin{itemize}
+		\item Maximize \textbf{value} subject to \textbf{capacity}. 
+	\end{itemize}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\hspace{3.5cm}
+	\includegraphics[width=0.25\textwidth]{pokeitems.png}
+	 
+	\bigskip
+	\hspace{2.5cm} Choose a subset of the items
+		\[
+			\begin{array}{lll}
+				(7, 28), & (6, 22), & (5, 18),\\
+				(2, 6), & (3, 7), & (1, 1).
+			\end{array}
+		\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\hspace{3.5cm}
+	\includegraphics[width=0.25\textwidth]{pokeitems.png}
+	 
+	\bigskip
+	\hspace{2.5cm} Subset$= 100101$.
+		\[
+			\begin{array}{lll}
+				\textbf{(7, 28)}, & (6, 22), & (5, 18),\\
+				\textbf{(2, 6)}, & (3, 7), & \textbf{(1, 1)}.
+			\end{array}
+		\]\pause
+		\hspace{2.5cm} \emph{Is value maximized?}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	We want to
+
+	\bigskip
+	\begin{quote}
+		Maximize $\sum_{i= 1}^n x_iv_i$ 
+	\end{quote}
+	\begin{quote}
+		Subject to $\sum_{i= 1}^n x_iw_i \leq W$
+	\end{quote}
+	where $x_i \in \{0,1\}$.
+\end{frame}
+%
+%nextframe
+\begin{frame}{Knapsack - Subproblem graph}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	We obtain the Bottom-Up solution
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\lstinputlisting[language=Java, firstline=48, lastline=63]{Aula09.java}
+\end{frame}
+%
+%nextframe
+%\begin{frame}
+%	\begin{tabular}{|| l|| c|c|c|c|c|c|c|c|c|c|c ||}\hline
+%		\textbf{j} & 1 & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 & 11\\\hline\hline
+%		\textbf{i} & x & x & x & x & x  & x  & x  & x  & x  &  x & x\\\hline\hline\pause
+%		1          & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 1  & 1  &  1 & 1\\\hline\pause
+%		2          & 1 & 6 & 7 & 7 & 7  & 7  & 7  & 7  & 7  &  7 & 7\\\hline\pause
+%		3          & 1 & 6 & 7 & 8 & 13 & 14 & 14 & 14 & 14 & 14 & 14\\\hline\pause
+%		4          & 1 & 6 & 7 & 8 & 18 & 19 & 24 & 25 & 26 & 31 & 32\\\hline\pause
+%		5          & 1 & 6 & 7 & 8 & 18 & 22 & 24 & 28 & 29 & 31 & 40\\\hline\pause
+%		6          & 1 & 6 & 7 & 8 & 18 & 22 & 28 & 29 & 34 & 35 & 40\\\hline
+%	\end{tabular} 
+%\end{frame}
+%
+%nextframe
+\begin{frame} {Dynamic programming: Top-Down}
+	\[
+		\begin{array}{l}
+			\mbox{Items } \mathbf{x}= x_1, \ldots, x_n\\
+			x_i= (w_i, v_i)\\
+			\mbox{Capacity } W \\
+			 \\
+			  
+		\end{array}
+	\]\pause
+	Let $V$ denote the max-value function that solves Knapsack.
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	We have the recurrence
+	\[
+		V(n,W)= \max
+		\left\{
+		\begin{array}{l} 
+			v_n + V(n-1, W-w_n)\\
+			V(n-1, W)
+		\end{array} 
+		\right.
+	\]\pause
+	\begin{itemize}
+		\item \emph{Recursion + $V$-table!}
+	\end{itemize}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\lstinputlisting[language=Java, firstline= 82, lastline= 110]{Aula09.java}
+\end{frame}
+\end{document}
