@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-10.25, 4.75) {1};
+		\node [style=none] (1) at (-9.25, 4.75) {1};
+		\node [style=none] (2) at (-8.25, 4.75) {9};
+		\node [style=none] (3) at (-7.25, 4.75) {9};
+		\node [style=none] (4) at (-6.25, 4.75) {2};
+		\node [style=none] (5) at (-5.25, 4.75) {$-5$};
+		\node [style=none] (6) at (-4.25, 4.75) {};
+		\node [style=none] (7) at (-3.25, 4.75) {$-5$};
+	\end{pgfonlayer}
+\end{tikzpicture}

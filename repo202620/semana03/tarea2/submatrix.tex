@@ -1,5 +1,49 @@
 \section{Submatriz}
 Dada una matriz (no necesariamente cuadrada) cuyas entradas posibles son $-1, 0, 1$
-encontrar la submatriz cuadrada de mayor suma.
+encontrar la submatriz cuadrada de mayor suma y mayor dimensión.
 \textbf{Sugerencia:} Describa las submatrices mediante las filas y columnas que se
 remueven de la matriz original.
+\subsection*{Ejemplo}
+Para la siguiente matriz 4$\times$6
+\[
+	M=
+	\left(
+		\begin{array}{rrrrrr}
+			-1 & 0 & 0 & 0 & 1 & -1 \\
+			1 & 0 & 0 & 1 & 0 & -1 \\
+			-1 & 0 & -1 & 0 & 1 & 0 \\
+			0 & -1 & 0 & 0 & 0 & -1
+		\end{array}
+	\right)
+\]
+La mayor suma posible de una submatriz cuadrada es 2. Hay tres submatrices con
+dicha suma:
+\[
+	M^{*34}_{*1236}=
+	\left(
+		\begin{array}{rr}
+			0 & 1\\
+			1 & 0
+		\end{array}
+	\right)
+\]
+\[
+	M^{*14}_{*1236}=
+	\left(
+		\begin{array}{rr}
+			1 & 0\\
+			0 & 1
+		\end{array}
+	\right)
+\]
+\[
+	M^{*4}_{*126}=
+	\left(
+		\begin{array}{rrr}
+			0 & 0 & 1\\
+			0 & 1 & 0\\
+			-1 & 0 & 1
+		\end{array}
+	\right)
+\]
+Su programa debe retornar \( M^{*4}_{*126}\)

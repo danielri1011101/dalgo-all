@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=new style 5] (32) at (-5.5, 1) {1};
+		\node [style=new style 5] (33) at (-2.75, 2.5) {2};
+		\node [style=new style 5] (34) at (-2.5, -4.25) {3};
+		\node [style=new style 5] (35) at (0.5, 4.5) {4};
+		\node [style=new style 5] (36) at (-2.25, 0.25) {5};
+		\node [style=new style 5] (37) at (-2.25, -2) {7};
+		\node [style=new style 5] (38) at (3, -0.5) {6};
+		\node [style=new style 5] (39) at (2.75, -3) {9};
+		\node [style=new style 5] (40) at (3.75, 4.5) {8};
+		\node [style=new style 5] (41) at (5.25, 2) {10};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=new edge style 0] (32) to (33);
+		\draw [style=new edge style 0] (34) to (38);
+		\draw [style=new edge style 0] (34) to (39);
+		\draw [style=new edge style 0] (33) to (35);
+		\draw [style=new edge style 0] (32) to (37);
+		\draw [style=new edge style 0] (32) to (36);
+		\draw [style=new edge style 0] (33) to (38);
+		\draw [style=new edge style 0] (32) to (34);
+		\draw [style=new edge style 0] (36) to (41);
+		\draw [style=new edge style 0] (33) to (41);
+		\draw [style=new edge style 0] (35) to (40);
+	\end{pgfonlayer}
+\end{tikzpicture}
