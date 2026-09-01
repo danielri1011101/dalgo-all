@@ -1,19 +1,12 @@
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=new style 6] (23) at (3.25, 0) {-5};
-		\node [style=new style 4] (24) at (2.5, 0) {};
 		\node [style=new style 6] (25) at (4.75, 0) {-5};
 		\node [style=new style 4] (26) at (4, 0) {};
-		\node [style=new style 4] (32) at (-0.5, 0) {};
 		\node [style=new style 6] (33) at (-1.25, 0) {9};
 		\node [style=new style 4] (34) at (-2, 0) {};
 		\node [style=new style 6] (35) at (-2.75, 0) {1};
 		\node [style=new style 4] (36) at (-3.5, 0) {};
 		\node [style=new style 6] (37) at (-4.25, 0) {1};
-		\node [style=new style 0] (38) at (0.25, 0) {9};
-		\node [style=new style 0] (39) at (1.75, 0) {2};
-		\node [style=new style 7] (40) at (1, 0) {};
-		\node [style=new style 4] (41) at (2.5, 0) {};
-		\node [style=new style 4] (42) at (-0.5, 0) {};
 	\end{pgfonlayer}
 \end{tikzpicture}

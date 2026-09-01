@@ -1,0 +1,278 @@
+\input{preamble}
+
+\begin{document}
+\frame{\titlepage}
+%
+%nextframe
+\begin{frame}{Knapsack}
+	\includegraphics[width=0.25\textwidth]{images/pokeitems.png}
+	\hspace{2cm}
+	\includegraphics[width=0.25\textwidth]{images/pokebag.png}
+
+	\medskip
+	Items \( (w_1, v_1), \ldots, (w_n, v_n) \) \hspace{0.5cm} Capacity $W$
+\end{frame}
+%
+%nextframe
+\begin{frame}{Knapsack}
+	\includegraphics[width=0.25\textwidth]{images/pokeitems.png}
+	\hspace{2cm}
+	\includegraphics[width=0.25\textwidth]{images/pokebag.png}
+	\bigskip
+	\begin{itemize}
+		\item Maximize \textbf{value} subject to \textbf{capacity}. 
+	\end{itemize}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\hspace{3.5cm}
+	\includegraphics[width=0.25\textwidth]{images/pokeitems.png}
+	 
+	\bigskip
+	\hspace{2.5cm} Choose a subset of the items
+		\[
+			\begin{array}{lll}
+				(7, 28), & (6, 22), & (5, 18),\\
+				(2, 6), & (3, 7), & (1, 1).
+			\end{array}
+		\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\hspace{3.5cm}
+	\includegraphics[width=0.25\textwidth]{images/pokeitems.png}
+	 
+	\bigskip
+	\hspace{2.5cm} Subset$= 100101$.
+		\[
+			\begin{array}{lll}
+				\textbf{(7, 28)}, & (6, 22), & (5, 18),\\
+				\textbf{(2, 6)}, & (3, 7), & \textbf{(1, 1)}.
+			\end{array}
+		\]\pause
+		\hspace{2.5cm} \emph{Is value maximized?}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	We want to
+
+	\bigskip
+	\begin{quote}
+		Maximize $\sum_{i= 1}^n x_iv_i$ 
+	\end{quote}
+	\begin{quote}
+		Subject to $\sum_{i= 1}^n x_iw_i \leq W$
+	\end{quote}
+	where $x_i \in \{0,1\}$.
+\end{frame}
+%
+%nextframe
+\begin{frame}{Knapsack - Subproblem graph}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	We obtain the Bottom-Up solution
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\lstinputlisting[language=Java, firstline=48, lastline=63]{code/Aula09.java}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\begin{tabular}{|| l|| c|c|c|c|c|c|c|c|c|c|c ||}\hline
+		\textbf{j} & 1 & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 & 11\\\hline\hline
+		\textbf{i} & x & x & x & x & x  & x  & x  & x  & x  &  x & x\\\hline\hline\pause
+		1          & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 1  & 1  &  1 & 1\\\hline\pause
+		2          & 1 & 6 & 7 & 7 & 7  & 7  & 7  & 7  & 7  &  7 & 7\\\hline\pause
+		3          & 1 & 6 & 7 & 8 & 13 & 14 & 14 & 14 & 14 & 14 & 14\\\hline\pause
+		4          & 1 & 6 & 7 & 8 & 18 & 19 & 24 & 25 & 26 & 31 & 32\\\hline\pause
+		5          & 1 & 6 & 7 & 8 & 18 & 22 & 24 & 28 & 29 & 31 & 40\\\hline\pause
+		6          & 1 & 6 & 7 & 8 & 18 & 22 & 28 & 29 & 34 & 35 & 40\\\hline
+	\end{tabular} 
+\end{frame}
+%
+%nextframe
+\begin{frame} {Dynamic programming: Top-Down}
+	\[
+		\begin{array}{l}
+			\mbox{Items } \mathbf{x}= x_1, \ldots, x_n\\
+			x_i= (w_i, v_i)\\
+			\mbox{Capacity } W \\
+			 \\
+			  
+		\end{array}
+	\]\pause
+	Let $V$ denote the max-value function that solves Knapsack.
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	We have the recurrence
+	\[
+		V(n,W)= \max
+		\left\{
+		\begin{array}{l} 
+			v_n + V(n-1, W-w_n)\\
+			V(n-1, W)
+		\end{array} 
+		\right.
+	\]\pause
+	\begin{itemize}
+		\item \emph{Recursion + $V$-table!}
+	\end{itemize}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\lstinputlisting[language=Java, firstline= 82, lastline= 110]{code/Aula09.java}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\textbf{Program Specification}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\begin{quote}
+		\hspace{3cm}
+		\includegraphics[width=0.3\textwidth]{images/snoop_pointing_2.jpeg}
+
+		\vspace{1cm}
+		``\emph{Find the {mathematical problem} solved by a {program}}''
+	\end{quote}
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\textbf{Problem:} Compute \( \binom{n}{k} \).
+	\[
+		\begin{array}{l}
+			P\equiv 0 \leq k \leq n \ \ \land \ \texttt{*out} = \perp\\
+			Q\equiv \texttt{*out} = \binom{n}{k}
+		\end{array}
+	\]
+	\textbf{Solution:} A program $S$ such that
+	\begin{enumerate}
+		\item $P \equiv \textbf{true}$
+		\item Run $S$
+		\item $Q \equiv \textbf{true}$
+	\end{enumerate}
+	
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\textbf{Problem:} Knapsack with capacity $W$ and items
+	\( (w_1, v_1), \ldots, (w_n, v_n) \)
+	\[
+		\begin{array}{cc}
+			P\equiv & \forall i: w_i, v_i > 0 \ \land \ W > 0
+				\land \ \texttt{*out} = \perp\\
+			Q\equiv & \texttt{*out} =
+				\max \{\sum_{i=1}^n x_i\cdot v_i
+					\ | \ \sum_{i=1}^n x_i\cdot w_i
+				 			  \leq W \ | \\ 
+			     & x_i = 0 \lor x_i = 1 \ \ \}
+		\end{array}
+	\]
+	\textbf{Solution:} A program $S$ such that
+	\begin{enumerate}
+		\item $P \equiv \textbf{true}$
+		\item Run $S$
+		\item $Q \equiv \textbf{true}$
+	\end{enumerate}
+	
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	The sequence
+	\begin{enumerate}
+		\item $P \equiv \textbf{true}$
+		\item Run $S$
+		\item $Q \equiv \textbf{true}$
+	\end{enumerate}
+	is the \emph{specification} of $S$. $P$ is the \emph{precondition}, and
+	$Q$ is the \emph{postcondition}.
+	\[
+		\mbox{Notation:}\ P \{S\} Q.
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}
+	\textbf{Practice}
+\end{frame}
+%
+%nextframe
+\begin{frame}{Quiz}
+	\hspace{2.5cm}
+	\includegraphics[width=0.5\textwidth]{images/marcela.png}
+\end{frame}
+%
+%nextframe
+\begin{frame}{Quiz}
+	\begin{enumerate}
+		\item Define the Linked List data structure (in Java or Python)
+		\item Implement the list
+
+			\includegraphics[width=0.5\textwidth]{images/llist.png} 
+		\item Implement the method fooList(list) that prints ``foo nodeValue''
+			in different lines.
+		\item[] Example:
+			\begin{itemize}
+				\item[] foo 3
+				\item[] foo 5
+				\item[] foo 6
+			\end{itemize}
+	\end{enumerate}
+\end{frame}
+%
+%nextframe
+\begin{frame}{Quiz-Solution}
+	\lstinputlisting[language=Java, firstline=2, lastline=30]{code/Quiz1.java}
+\end{frame}
+%
+%nextframe
+\begin{frame}{Graphs-Theory}
+	A \emph{graph} $G$ is the data $(N, A)$ where
+	\begin{itemize}
+		\item $N$ is a finitie set of elements called \emph{nodes}.
+		\item $A \subset \binom{N}{2}$ is the set of \emph{edges}
+	\end{itemize}
+	where 
+	\[
+		\binom{N}{2}=
+		\left\{
+			S \subset N \mid \# S = 2
+		\right\}
+	\]
+\end{frame}
+%
+%nextframe
+\begin{frame}{Graphs-Example}
+	\[
+		\tikzfig{graph} \hspace{1cm}
+		\begin{array}{l}
+			N = \{0, 1, 2, 3\}\\
+			A =
+			\{
+				\{0,1\}, \{0,2\}, \{1,2\}, \{2,3\}
+			\}
+		\end{array}
+	\]
+\end{frame}
+%
+%nextframe
+\input{sections/graphs}
+%
+%nextframe
+\input{sections/dirgraphs}
+\end{document}

@@ -8,7 +8,11 @@ puntos:
 		 \\
 		\tikzfig{shg1}\\
 		 \\
-		\mbox{Puntaje $+2$}
+		 \mbox{\emph{Puntaje $+2$}}
+		 \\
+		 \\
+		\mbox{Nuevo tablero:}\\
+		\tikzfig{shg1p}\\
 		 \\
 		 \\
 		\mbox{\textbf{Opción 2:} Golpear el disco que conecta dos
@@ -18,10 +22,24 @@ puntos:
 		 \\
 		\tikzfig{shg2}\\
 		 \\
-		\mbox{Puntaje $+18$}
+		 \mbox{\emph{Puntaje $+18$}}\\
+		 \\
+		\mbox{Nuevo tablero:}\\
+		\tikzfig{shg2p}
 	\end{array}
 \]
-Tenga en cuenta: El puntaje inicial es cero y pueden haber blancos con
-puntajes negativos. Está permitido no golpear un blanco para evitar perder
-puntos.
-
+\bigskip
+\begin{quote}
+	Si se conocen los puntajes en cada blanco,
+	\emph{¿Cuál es el puntaje máximo que se puede obtener?}
+	Condiciones: 
+\end{quote}
+\begin{itemize}
+	\item Al golpear un blanco, este desaparece junto con sus discos
+		asociados.
+	\item Al golpear un disco, este desaparece junto con sus blancos
+		y discos asociados
+	\item El puntaje inicial es cero y pueden haber blancos con puntajes
+		negativos.
+	\item Está permitido no golpear un blanco para evitar perder puntos.
+\end{itemize}

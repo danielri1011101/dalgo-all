@@ -9,13 +9,12 @@
 \frame{\titlepage}
 %
 %nextframe
-\begin{frame}{Today's Class}
+\begin{frame}{This week}
 	\begin{enumerate}
 		\item Subproblem graph
 		\item Topological sorting (graphs)
 		\item Dynamic programming: Bottom-up
 		\item The Knapsack problem
-		\item Dynamic programming: Top-down
 	\end{enumerate}
 \end{frame}
 %
@@ -100,52 +99,16 @@
 \end{frame}
 %
 %nextframe
-%\begin{frame}
-%	\begin{tabular}{|| l|| c|c|c|c|c|c|c|c|c|c|c ||}\hline
-%		\textbf{j} & 1 & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 & 11\\\hline\hline
-%		\textbf{i} & x & x & x & x & x  & x  & x  & x  & x  &  x & x\\\hline\hline\pause
-%		1          & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 1  & 1  &  1 & 1\\\hline\pause
-%		2          & 1 & 6 & 7 & 7 & 7  & 7  & 7  & 7  & 7  &  7 & 7\\\hline\pause
-%		3          & 1 & 6 & 7 & 8 & 13 & 14 & 14 & 14 & 14 & 14 & 14\\\hline\pause
-%		4          & 1 & 6 & 7 & 8 & 18 & 19 & 24 & 25 & 26 & 31 & 32\\\hline\pause
-%		5          & 1 & 6 & 7 & 8 & 18 & 22 & 24 & 28 & 29 & 31 & 40\\\hline\pause
-%		6          & 1 & 6 & 7 & 8 & 18 & 22 & 28 & 29 & 34 & 35 & 40\\\hline
-%	\end{tabular} 
-%\end{frame}
-%
-%nextframe
-\begin{frame} {Dynamic programming: Top-Down}
-	\[
-		\begin{array}{l}
-			\mbox{Items } \mathbf{x}= x_1, \ldots, x_n\\
-			x_i= (w_i, v_i)\\
-			\mbox{Capacity } W \\
-			 \\
-			  
-		\end{array}
-	\]\pause
-	Let $V$ denote the max-value function that solves Knapsack.
-\end{frame}
-%
-%nextframe
 \begin{frame}
-	We have the recurrence
-	\[
-		V(n,W)= \max
-		\left\{
-		\begin{array}{l} 
-			v_n + V(n-1, W-w_n)\\
-			V(n-1, W)
-		\end{array} 
-		\right.
-	\]\pause
-	\begin{itemize}
-		\item \emph{Recursion + $V$-table!}
-	\end{itemize}
-\end{frame}
-%
-%nextframe
-\begin{frame}
-	\lstinputlisting[language=Java, firstline= 82, lastline= 110]{Aula09.java}
+	\begin{tabular}{|| l|| c|c|c|c|c|c|c|c|c|c|c ||}\hline
+		\textbf{j} & 1 & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 & 11\\\hline\hline
+		\textbf{i} & x & x & x & x & x  & x  & x  & x  & x  &  x & x\\\hline\hline\pause
+		1          & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 1  & 1  &  1 & 1\\\hline\pause
+		2          & 1 & 6 & 7 & 7 & 7  & 7  & 7  & 7  & 7  &  7 & 7\\\hline\pause
+		3          & 1 & 6 & 7 & 8 & 13 & 14 & 14 & 14 & 14 & 14 & 14\\\hline\pause
+		4          & 1 & 6 & 7 & 8 & 18 & 19 & 24 & 25 & 26 & 31 & 32\\\hline\pause
+		5          & 1 & 6 & 7 & 8 & 18 & 22 & 24 & 28 & 29 & 31 & 40\\\hline\pause
+		6          & 1 & 6 & 7 & 8 & 18 & 22 & 28 & 29 & 34 & 35 & 40\\\hline
+	\end{tabular} 
 \end{frame}
 \end{document}
