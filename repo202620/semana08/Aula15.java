@@ -56,6 +56,21 @@ public class Aula15 {
 		return -1;
 	}
 
+	/*
+	 * @TO-DO
+	 */
+	ArrayList<Edge> krskl(WGraph g) {
+		return null;
+	}
+
+	/*
+	 * @TO-DO
+	 * Uses krskl as a subroutine to compute the predecesors' array.
+	 */
+	int[] kruskal(WGraph g) {
+		return null;
+	}
+
 	public static void main(String[] args) {
 	}
 }
